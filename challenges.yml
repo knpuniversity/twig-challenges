@@ -1,3 +1,101 @@
-basics_printvariablecoding: ~
-basics_forloopcoding: ~
-basics_incorrectopentagsmc: ~
+# Basics
+basics_printvariablecoding:
+    question: >
+        At Penguins Pants Plus, the tailors have been working really hard
+        on the fall collection, and we're helping them out by building
+        the template for this page! A `collectionTitle` variable has been
+        passed into the template: print it inside the `<h1>` tag!
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#   $context->addVariable('collectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_variable:
+            type: php
+            # @TODO Should we move input() function from PHP expression provider to the HTTP one?
+            # It's a bit awkward when I use it for Twig files
+            assertTrue: input('fallCollection.twig') matches /{{ *collectionTitle *}}/
+            failure: I don't see the `collectionTitle` variable. Ensure you added it into the template.
+        look_for_text:
+            type: http
+            assertTrue: css('h1') matches /Fall in love and look your best in the snow./
+            failure: I don't see the text of `collectionTitle` variable being printed in `h1`!?
+
+basics_forloopcoding:
+    question: >
+        The fall collection is done! Dapper penguins are practically pounding
+        their flippers on our door to get a sneak peek of this season's latest
+        styles (this year, it's lots of black and white). Loop over the `products`
+        variable and print each inside an `h3` tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#   $context->addVariable('products', array(
+#       'The Black and Tan Trouser',
+#       'Antarctic Snow Pants (in leopard seal print)',
+#       'South Shore Swim Shorts',
+#       'Starfish Halloween Costume'
+#   ));
+    grading:
+        look_for_do_syntax:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{%/
+            failure: Make sure to use the "do" something tag `{%` with the `for` tag
+        look_for_for_loop:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /for/
+            failure: Use the `for` tag to loop collection
+        look_for_1:
+            type: php
+            assertTrue: body('h3') matches /The Black and Tan Trouser/
+            failure: I don't see the products' text being printed in `h3`!?
+        look_for_2:
+            type: php
+            assertTrue: body('h3') matches /Antarctic Snow Pants \(in leopard seal print\)/
+            failure: I don't see the products' text being printed in `h3`!?
+
+basics_incorrectopentagsmc:
+    question: >
+        Which of the following is **incorrect** Twig code:
+    explanation: >
+        * A) is correct because whitespace - even line breaks - inside Twig code are ok
+        (and actually, have no effect!)
+
+        * B) is correct because everything between `{#` and `#}` are comments. So, even
+        though this *would* be bad Twig code, it's totally ignored.
+
+        * C) is *not* correct, because the `for` tag must be used with the say something
+        tag: `{% for product in my_products %}`.
+
+        * D) is correct because `{% set ... ` is one of the valid "tags" that can be used
+        with the "say something" tag. We haven't used it yet, but it's totally valid.
+    features:
+        multiple_choice:
+            choices:
+                a: >
+                    ```twig
+                    {{
+                    pageTitle     }}
+                    ```
+                b: >
+                    ```twig
+                    {# for nonExistentVariable in bad syntax here #}
+                    ```')
+                c: >
+                    ```twig
+                    {{ for product in my_products }}
+                    ```
+                d: >
+                    ```twig
+                    {% set penguins = 'dapper' %}
+                    ```
+            correct: c
+    grading: []
