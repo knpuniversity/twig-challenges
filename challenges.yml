@@ -203,3 +203,73 @@ functionsfilters_dumpfindvariablecoding:
             type: http
             assertTrue: body() matches /Still wearing your summer swim shorts/
             failure: I don't see the text of `fallCollectionPromoDescription` variable being printed!?
+
+# ObjectsAndArrays
+objectsandarrays_printrandomarraykeycoding:
+    question: >
+        Penguins are known to be indecisive. To make things easier for them,
+        we're creating a random product selector. In the template, you have a
+        new `randomProductKey` variable, that's a number from 0 to 3 - matching
+        the indices on the `products` array. Use this new variable to print
+        the "random product" inside the `h2` tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#    $context->addVariable('products', array(
+#        'The Black and Tan Trouser',
+#        'Antarctic Snow Pants (in leopard seal print)',
+#        'South Shore Swim Shorts',
+#        'Starfish Halloween Costume'
+#    ));
+#    $context->addVariable('randomProductKey', rand(0, 3));
+    grading:
+        look_for_random_array_key:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /products\[randomProductKey\]/
+            failure: Use the `products[variableName]` syntax to get a variable key from the array.
+
+objectsandarrays_printproductobjectscoding:
+    question: >
+        The backend developers are getting really fancy and have changed the
+        products from simple strings to objects! Use the `dump()` function - or look
+        at the `PantsProduct` class - to check it out.
+
+        Fix the template and print out both the `name` and `price` of the product.
+        To be extra awesome, see if you can also print out the date each product will
+        be released.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        PantsProduct.php: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#    $context->requireFile('PantsProduct.php');
+#    $context->addVariable('products', array(
+#        new \PantsProduct('The Black and Tan Trouser', 50),
+#        new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
+#        new \PantsProduct('South Shore Swim Shorts', 49),
+#        new \PantsProduct('Starfish Halloween Costume', 35)
+#    ));
+    grading:
+        look_for_name:
+            type: http
+            assertTrue: body() matches /The Black and Tan Trouser/
+            failure: Are you printing the product names?
+        look_for_price:
+            type: http
+            assertTrue: body() matches /99/
+            failure: Are you printing the product prices?
+        look_for_name_property:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *product.name/
+            failure: You can just use `product.name` to print the name. Behind the scenes Twig calls the `getName()` function on `PantsProduct`.
+        look_for_price_property:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *product.price/
+            failure: You can just use `product.price` to print the price. Behind the scenes Twig calls the `getPrice()` function on `PantsProduct`.
