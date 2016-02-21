@@ -54,12 +54,12 @@ basics_forloopcoding:
             assertTrue: input('fallCollection.twig') matches /for/
             failure: Use the `for` tag to loop collection
         look_for_1:
-            type: php
-            assertTrue: body('h3') matches /The Black and Tan Trouser/
+            type: http
+            assertTrue: css('h3') matches /The Black and Tan Trouser/
             failure: I don't see the products' text being printed in `h3`!?
         look_for_2:
-            type: php
-            assertTrue: body('h3') matches /Antarctic Snow Pants \(in leopard seal print\)/
+            type: http
+            assertTrue: css('h3') matches /South Shore Swim Shorts/
             failure: I don't see the products' text being printed in `h3`!?
 
 basics_incorrectopentagsmc:
@@ -99,3 +99,107 @@ basics_incorrectopentagsmc:
                     ```
             correct: c
     grading: []
+
+# FunctionsFilters
+functionsfilters_datefiltercoding:
+    question: >
+        The penguins will want to get their flippers on these pants as
+        *soon* as possible. So, we're passing in a `saleStartsAt` date
+        variable that's set to *when* these fresh pants are available. Print
+        this using the `date` **filter** and the `F jS` format (e.g. January 5th)
+        inside the `h3` tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#   $context->addVariable('saleStartsAt', $this->getSaleStartsAt());
+    grading:
+        look_for_variable:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *saleStartsAt/
+            failure: I don't see the `saleStartsAt` variable. Ensure you added it into the template.
+        look_for_date_format:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /F jS/
+            failure: Make sure you use the `F jS` (e.g. January 5th) format for the date
+        # @TODO Don't know how we can test this:
+#        $htmlGrader->assertElementContains('h3', $this->getSaleStartsAt()->format('F jS'));
+
+functionsfilters_randomfunctionwithfiltercoding:
+    question: >
+        We don't really know what color we'll have for each item yet. But to
+        create a realistic demo, use the `random()` function to randomly
+        print either `black`, `white` or `green` for the color of each
+        product. Then, make sure this prints in uppercase, to really make
+        this page SHOUT.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#            $context->addVariable('products', array(
+#                'The Black and Tan Trouser',
+#                'Antarctic Snow Pants (in leopard seal print)',
+#                'South Shore Swim Shorts',
+#                'Starfish Halloween Costume'
+#            ));
+    grading:
+        look_for_random:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *random(/
+            failure: Are you using the `random()` function?
+        look_for_upper:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /|upper *}}/
+            failure: Don't forget to use the `upper` filter to uppercase the colors!
+        look_for_black:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /black/
+            failure: Use `black` (lowercase) as one of the random colors
+        look_for_white:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /white/
+            failure: Use `white` (lowercase) as one of the random colors
+        look_for_green:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /green/
+            failure: Use `green` (lowercase) as one of the random colors
+        assert_color:
+            type: http
+            assertTrue: body() matches /BLACK|WHITE|GREEN/
+            failure: The output does not contain any of the colors BLACK, GREEN or WHITE - are you randomly selecting one of these and uppercasing them?
+
+functionsfilters_dumpfindvariablecoding:
+    question: >
+        All the AirPupnMeow PHP developers are at lunch. You know that
+        a new variable is being passed to the template that's set to
+        the description for the fall collection, but you don't know what
+        the variable is called! Use the `dump()` function to find out
+        what the variable is called (and don't worry that the challenge
+        is graded wrong at first). Then, print this variable inside
+        the `header` tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#   $context->addVariable(
+#       'fallCollectionPromoDescription',
+#       'Still wearing your summer swim shorts? Time to plan for the 9 month winter in style. Look no further than our fall collection at Penguins Pants Plus!'
+#   );
+    grading:
+        look_for_random:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *fallCollectionPromoDescription/
+            failure: I don't see you printing the unknown variable yet...
+        look_for_random:
+            type: http
+            assertTrue: body() matches /Still wearing your summer swim shorts/
+            failure: I don't see the text of `fallCollectionPromoDescription` variable being printed!?
