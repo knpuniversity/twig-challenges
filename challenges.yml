@@ -98,7 +98,6 @@ basics_incorrectopentagsmc:
                     {% set penguins = 'dapper' %}
                     ```
             correct: c
-    grading: []
 
 # FunctionsFilters
 functionsfilters_datefiltercoding:
@@ -378,3 +377,104 @@ layouttemplateinheritance_addblockandoverridecoding:
             type: php
             assertTrue: input('layout.twig') matches /You're hip, you're cool, you're a penguin!/
             failure: Oh no! The original caption - *"You're hip, you're cool, you're a penguin!"* will now be missing from every other template that does *not* override the block. Make this be the default footer content.
+
+# IncludingOtherTemplates
+includingothertemplates_useincludecoding:
+    question: >
+        More duplication!!?? It must have been the intern! Refactor the
+        "Featured Product" section by moving it into `_featuredProduct.twig` and
+        including this from both templates.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        mainCollection.twig: ~
+        _featuredProduct.twig: ~
+        layout.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_text:
+            type: http
+            assertTrue: body() matches /pin-striped full suit/
+            failure: I don't see the *pin-striped full suit* text being printed!?
+        look_for_include_1:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /include/
+            failure: I don't see you including other template!?
+        look_for_text_1:
+            type: php
+            assertTrue: input('_featuredProduct.twig') matches /pin-striped full suit/
+            failure: I don't see the *pin-striped full suit* text in the `_featuredProduct.twig` template!?
+        look_for_text_2:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /pin-striped full suit/
+            failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `fallCollection.twig`
+        look_for_include_2:
+            type: php
+            assertTrue: input('mainCollection.twig') matches /include/
+            failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `fallCollection.twig`
+
+includingothertemplates_includeandvariablesmc:
+    question: >
+        Check out the following code:
+
+        ```twig
+        {# source for homepage.twig #}
+
+        {{ include('_otherTemplate.twig', {'color': 'blue'}) }}
+        ```
+
+        ```twig
+        {# source for _otherTemplate.twig #}
+
+        {{ include('_thirdTemplate.twig', {
+            'color': 'red',
+            'number': 5
+        }) }}
+        ```
+
+        ```twig
+        {# source for _thirdTemplate.twig #}
+
+        {% set number = 10 %}
+
+        <h4>
+            {{ color|default('green') }},
+            {{ number|default(25) }},
+            {{ name|default('Leanna') }},
+            {{ food|default('tomato') }}
+        </h4>
+        ```
+
+        Now, suppose that `homepage.twig` is rendered and passed a `food` variable
+        set to `pizza`. What will be printed inside the `h4` tag?
+    explanation: >
+        Look at each variable, one at a time:
+
+        * `color`: This is passed from `homepage.twig` to `_otherTemplate.twig` as `blue`.
+        But then, `_otherTemplate.twig` passes a new value to `_thirdTemplate.twig`: `red`.
+        The `default` filter doesn't do anything, since this value *is* set.
+
+        * `number`: At first, `number` is set to `5` inside `_thirdTemplate.twig`, but
+        the `{% set` call overrides this and sets it to 10.
+
+        * `name`: The `name` variable is *never* set. The `default` filter comes to the
+        rescue and prints out `Leanna` as a default value.
+
+        * `food`: The `food` variable is originally set to `pizza` and never overridden.
+        Even though it's not explicitly passed in the `include` calls, all variables in
+        one template are passed into the included template. So, when we're eventually
+        in `_thirdTemplate.twig`, `food` is still set to `pizza`.
+        EOF;
+    features:
+        multiple_choice:
+            choices:
+                a: green, 10, Leanna, tomato
+                b: blue, 5, Leanna, pizza
+                c: red, 10, Leanna, tomato
+                d: red, 10, Leanna, pizza
+            correct: d
