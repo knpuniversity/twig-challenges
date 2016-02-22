@@ -658,3 +658,105 @@ forloopinlineif_fortagconditionscoding:
             type: php
             assertFalse: input('fallCollection.twig') matches /{% if/
             failure: Hide the products with zero quantity, but without a new `{% if ...` statement: add an `if` part to the `{% for ...` tag.
+
+# MistakesMacros
+mistakesmacros_includemistakecoding:
+    question: >
+        You've been coding like a machine until someone brought birthday cake
+        <i class="fa fa-birthday-cake"></i> to the office and you quit working
+        immediately! Now, in a slight sugar-coma, you're ready to keep working.
+        Start by fixing the error in this template:
+    step: ~
+    files:
+        aboutPenguins.twig: ~
+        _cannotFly.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    grading:
+        look_for_text:
+            type: http
+            assertTrue: body() matches /due to: little wings/
+            failure: I see the *"due to: little wings"* text being printed!?
+
+mistakesmacros_blankvariableerrormc:
+    question: >
+        Check out the following code:
+
+        ```twig
+        {# homepage.twig #}
+
+        <h1>{{ product.name }}</h1>
+        ```
+
+        If you see the following error, what's the likely cause?:
+
+        Item "name" for "" does not exist in homepage.twig
+    explanation: >
+        This is a classic error that means that `product` is empty - like `null`, or an empty
+        string - instead of it being an object or an array (which is what we were expecting).
+        If `B` or `C` were true, you would see a different error. And `D` is completely wrong:
+        you can say `product.name` whether `product` is an object or an associative array
+        that has a `name` key.
+    features:
+        multiple_choice:
+            choices:
+                a: The `product` variable might be null, instead of an object
+                b: There might not be a `name` property on the product object
+                c: There might not be a `getName()` function on the product object
+                d: The `product` variable might be an array, but we're treating it like an object
+            correct: a
+
+mistakesmacros_sizechartmacrocoding:
+    question: >
+        Penguins are friendly, relaxed creatures. And they hate it when their pants
+        fit too tight. To help them out, we've included a sizing chart in `mainCollection.twig`.
+        We want to re-use that sizing chart on `fallCollection.twig`, but not show the "XL" column,
+        because the fall collection only has the sizes S, M and L.
+
+        Refactor the sizing chart into a macro called `printSizingChart`, put it in `macros.twig`,
+        and make sure it has a `showXLColumn` argument that you use to only show XL when we want to.
+        Use this macro in both collection templates, making sure not to include the XL column for
+        `fallCollection.twig`.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        mainCollection.twig: ~
+        macros.twig: ~
+        layout.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+# @TODO Add context:
+# $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_macro_definition:
+            type: php
+            assertTrue: input('macros.twig') matches /printSizingChart(/
+            failure: I don't see the `printSizingChart()` macro in `macros.twig`
+        look_for_macro_argument:
+            type: php
+            assertTrue: input('macros.twig') matches /showXLColumn/
+            failure: I don't see the `showXLColumn` argument for the `printSizingChart()` macro. Add this and use it to hide/show the XL column.
+        look_for_macro_usage_1:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /printSizingChart(/
+            failure: You'll need to use the `printSizingChart()` macro inside `fallCollection.twig`
+        look_for_macro_usage_2:
+            type: php
+            assertTrue: input('mainCollection.twig') matches /printSizingChart(/
+            failure: You'll need to use the `printSizingChart` macro inside `mainCollection.twig`
+        look_for_import:
+            type: php
+            assertTrue: input('mainCollection.twig') matches /import/
+            failure: Don't forget to `import` `macros.twig` in `mainCollection.twig`.
+        look_for_text_1:
+            type: http
+            assertTrue: body() matches /5-15 lbs/
+            failure: I don't see the text of *"5-15 lbs"* text being printed!?
+        look_for_text_2:
+            type: http
+            assertTrue: body() matches /61-85 lbs/
+            failure: I don't see the text of *"61-85 lbs"* text being printed!?
