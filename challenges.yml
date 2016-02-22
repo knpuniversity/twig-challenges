@@ -469,7 +469,6 @@ includingothertemplates_includeandvariablesmc:
         Even though it's not explicitly passed in the `include` calls, all variables in
         one template are passed into the included template. So, when we're eventually
         in `_thirdTemplate.twig`, `food` is still set to `pizza`.
-        EOF;
     features:
         multiple_choice:
             choices:
@@ -540,3 +539,122 @@ testsifstatements_complextestandnotcoding:
             type: php
             assertTrue: input('_featuredProduct.twig') matches /is not odd/
             failure: Use `not odd` to make sure `quantityRemaining` is not an odd number. (Hint: you could also use `is even` in real life... but not to pass this challenge)
+
+# ForLoopInlineIf
+forloopinlineif_validforloopvariablemc:
+    question: >
+        Which of the following is **not** a valid thing you can do with the `loop` variable?
+    explanation: >
+        Twig's documentation for the [for](http://twig.sensiolabs.org/doc/tags/for.html#the-loop-variable)
+        tag shows that all of these are valid, except for `loop.previous` - we made that
+        one up ;).
+    features:
+        multiple_choice:
+            choices:
+                a: `{% if loop.first %}`
+                b: `{{ loop.previous }}`
+                c: `{{ loop.index0 }}`
+                d: `{% if loop.length > 5 %}`
+            correct: b
+
+forloopinlineif_forelsecoding:
+    question: >
+        This template works well enough, but it could be easier! Leverage Twig's
+        for-else ability to remove the if statement at the bottom. We're passing
+        in an empty `products` array variable, so make sure that `No pants for you!`
+        still prints out since the inventory is empty.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+# @TODO Add context:
+# $context->addVariable('products', array());
+    grading:
+        look_for_else:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /else/
+            failure: Use an `else` with your `for` tag.
+        look_for_text:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /No pants for you!/
+            failure: I don't see the *"No pants for you!"* text being printed!?
+        look_for_if:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /{% if/
+            failure: You don't need the `{% if` statement that checks for the products anymore!
+
+forloopinlineif_onelineifstatementcoding:
+    question: >
+        The intern added an if statement that either prints each product's
+        quantity or an "out of stock" message. It works great! But I can tell that
+        you like a challenge: see if you can write this all in one line, inside a
+        single `{{ ... }}` "say something" tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        PantsProduct.php:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+# @TODO Add context:
+#        $context->requireFile('PantsProduct.php');
+#        $context->addVariable('products', array(
+#            new \PantsProduct('The Black and Tan Trouser', 50, 0),
+#            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
+#            new \PantsProduct('South Shore Swim Shorts', 49, 0),
+#            new \PantsProduct('Starfish Halloween Costume', 35, 62)
+#        ));
+    grading:
+        assert_text_1:
+            type: http
+            assertTrue: css('.stock-status') matches /Out of Stock/
+            failure: I see the *"The Black and Tan Trouser"* text being printed!?
+        assert_text_2:
+            type: http
+            assertTrue: css('.stock-status') matches /62/
+            failure: I see the *"The Black and Tan Trouser"* text being printed!?
+        assert_text:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /{% if/
+            failure: Remove the `{% if` statement and replace it with a single line that does the same thing.
+
+forloopinlineif_fortagconditionscoding:
+    question: >
+        Change of plan! Instead of printing "out of stock", management wants to completely
+        hide any products that aren't available. That's no problem, because you've just read
+        the documentation about the `for` tag and found out that you can add
+        [conditions](http://twig.sensiolabs.org/doc/tags/for.html#adding-a-condition)
+        that filter things when looping. Use this to only print products with a quantity greater
+        than zero.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        PantsProduct.php:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+# @TODO Add context:
+#        $context->requireFile('PantsProduct.php');
+#        $context->addVariable('products', array(
+#            new \PantsProduct('The Black and Tan Trouser', 50, 0),
+#            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
+#            new \PantsProduct('South Shore Swim Shorts', 49, 0),
+#            new \PantsProduct('Starfish Halloween Costume', 35, 62)
+#        ));
+    grading:
+        look_for_text_1:
+            type: http
+            assertFalse: body() matches /The Black and Tan Trouser/
+            failure: I see the *"The Black and Tan Trouser"* text being printed!?
+        look_for_text_2:
+            type: http
+            assertTrue: body() matches /Starfish Halloween Costume/
+            failure: I don't see the *"Starfish Halloween Costume"* text being printed!?
+        look_for_if:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /{% if/
+            failure: Hide the products with zero quantity, but without a new `{% if ...` statement: add an `if` part to the `{% for ...` tag.
