@@ -760,3 +760,85 @@ mistakesmacros_sizechartmacrocoding:
             type: http
             assertTrue: body() matches /61-85 lbs/
             failure: I don't see the text of *"61-85 lbs"* text being printed!?
+
+# ExtraCreditEscaping
+extracreditescaping_sidebarblockcoding:
+    question: >
+        Most pages override the sidebar block, but not `fallCollection.twig`!
+        Unfortunately, even though the sidebar is empty, the `<div class="col-xs-3">`
+        element in `layout.twig` still exists, so the content is pushed to the right.
+        Let's fix this:
+
+        A) Add some logic so the extra `<div class="col-xs-3">` (in `layout.twig`) and its
+        closing tag are only rendered if the sidebar block has content.
+
+        B) Change the `col-xs-9` to `col-xs-12` if the sidebar block has no content,
+        so it takes up the full-width of the page.
+    step: ~
+    files:
+        layout.twig: ~
+        fallCollection.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+# @TODO Add context:
+# $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_block:
+            type: php
+            assertTrue: input('layout.twig') matches /block(/
+            failure: Use the `block('sidebar') function to determine if the child template has any sidebar content.
+        look_for_class_1:
+            type: http
+            assertFalse: body() matches /col-xs-3/
+            failure: Make sure the `.col-xs-3` element does not print at all, since there is no sidebar on this page.
+        look_for_class_2:
+            type: http
+            assertTrue: body() matches /col-xs-12/
+            failure: Change the main content div's class to be `col-xs-9` when there is no sidebar content.
+
+extracreditescaping_badtwigcodemc:
+    question: Which of the following is bad Twig code:
+    explanation: >
+        * Answer (A) uses the `~` to concatenate a string and a variable, totally legal!
+
+        * Answer (B) adds a `-` on the opening and closing `{{` in order to remove any
+        extra whitespace before or after this tag.
+
+        * But (C) is totally made up - `{~` is not valid syntax.
+    features:
+        multiple_choice:
+            choices:
+                a: "`{{ ('Hello '~name)|upper }}`"
+                b: "`{{- 'Hello'|upper -}}`"
+                c: "`{~ name|upper ~}`"
+            correct: c
+
+extracreditescaping_wysiwygfiltercoding:
+    question: >
+        In our admin section, the content penguins are using a WYSIWYG editor to edit the
+        pant descriptions.  But immediately, ugly HTML tags started printing out, instead
+        of being rendered! Add a filter to save the day.
+    step: ~
+    files:
+        singleItem.twig: ~
+        PantsProduct.php:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+# @TODO Add context:
+#          $context->requireFile('PantsProduct.php');
+#          $product = new \PantsProduct('The Black and Tan Trouser', 50);
+#          $product->setDescription('The <strong>Hottest</strong> pants this fall!');
+#          $context->addVariable('product', $product);
+    grading:
+        look_for_tag:
+            type: http
+            assertTrue: body() matches /<strong>/
+            failure: The `strong` tag still looks escaped - how can you make it raw?
+        look_for_raw:
+            type: php
+            assertTrue: input('singleItem.twig') matches /\| *raw/
+            failure: Use the `raw` filter to *not* escape HTML tags.
