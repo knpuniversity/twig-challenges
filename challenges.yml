@@ -478,3 +478,65 @@ includingothertemplates_includeandvariablesmc:
                 c: red, 10, Leanna, tomato
                 d: red, 10, Leanna, pizza
             correct: d
+
+# TestsIfStatements
+testsifstatements_testifoddcoding:
+    question: >
+        Penguins are very superstitious about odd numbers. If we have an odd number
+        of total pants available, print a message that says:
+        `We promise, 1 more pair of pants is coming very soon!` to calm their fears.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#     $context->requireFile('PantsProduct.php');
+#     $context->addVariable('products', array(
+#         new \PantsProduct('The Black and Tan Trouser', 50),
+#         new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
+#         new \PantsProduct('South Shore Swim Shorts', 49),
+#     ));
+    grading:
+        look_for_text:
+            type: http
+            assertTrue: body() matches /We promise, 1 more pair of pants is coming very soon!/
+            failure: I don't see the *"We promise, 1 more pair of pants is coming very soon!"* text being printed!?
+        look_for_length:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /\| *length/
+            failure: Use the `length` filter to count the products.
+        look_for_is_odd:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /is odd/
+            failure: Use the `is odd` to see if there are an odd number of products.
+
+testsifstatements_complextestandnotcoding:
+    question: >
+        When we show the featured product, sometimes we pass a `quantityRemaining` variable
+        to `_featuredProduct.twig`, but sometimes we don't. To make matters worse, remember that
+        Penguins hate odd numbers! Add an `if` statement so that the `featured-quantity`
+        element is printed *only* if `quantityRemaining`is defined **and** if it is *not*
+        an odd number.
+
+        **Hint**: No `quantityRemaining` variable is being passed to `fallCollection.twig`.
+        But you can test your logic by passing a `quantityRemaining` variable in your
+        `include()` function with different values.
+    step: ~
+    files:
+        _featuredProduct.twig: ~
+        fallCollection.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    grading:
+        look_for_is_defined:
+            type: php
+            assertTrue: input('_featuredProduct.twig') matches /is defined/
+            failure: Use the `defined` to see if `quantityRemaining` is defined
+        look_for_is_not_odd:
+            type: php
+            assertTrue: input('_featuredProduct.twig') matches /is not odd/
+            failure: Use `not odd` to make sure `quantityRemaining` is not an odd number. (Hint: you could also use `is even` in real life... but not to pass this challenge)
