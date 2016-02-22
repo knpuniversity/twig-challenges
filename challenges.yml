@@ -273,3 +273,108 @@ objectsandarrays_printproductobjectscoding:
             type: php
             assertTrue: input('fallCollection.twig') matches /{{ *product.price/
             failure: You can just use `product.price` to print the price. Behind the scenes Twig calls the `getPrice()` function on `PantsProduct`.
+
+# LayoutTemplateInheritance
+layouttemplateinheritance_createlayoutremoveduplicationcoding:
+    question: >
+        The team hates duplication! But now we have two templates: one for the
+        main collection, and another for the fall collection: the whole HTML
+        layout is in both! Move the duplicated layout HTML into the new `layout.twig`
+        file. Remove the duplication from both `mainCollection.twig` and
+        `fallCollection.twig` and use template inheritance to keep things looking fly.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        mainCollection.twig: ~
+        layout.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_extends_1:
+            type: php
+            assertTrue: input('fallCollection.twig') matches / extends +('|")layout.twig('|") *%}/
+            failure: `fallCollection.twig` template needs to *extend* `layout.twig`
+        look_for_extends_2:
+            type: php
+            assertTrue: input('mainCollection.twig') matches / extends +('|")layout.twig('|") *%}/
+            failure: `mainCollection.twig` template needs to "extend" `layout.twig`
+        look_for_opening_html:
+            type: php
+            assertTrue: input('layout.twig') matches /<html/
+            failure: I don't see opening `html` tag. Put the entire HTML layout into `layout.twig` template.
+        look_for_closing_html:
+            type: php
+            assertTrue: input('layout.twig') matches /</html>/
+            failure: I don't see closing `html` tag. Put the entire HTML layout into `layout.twig` template
+        look_for_header:
+            type: php
+            assertTrue: input('layout.twig') matches /<header/
+            failure: The `header` tag belongs in `layout.twig` too, since it's repeated on both pages
+        look_for_layout:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /<html/
+            failure: You no longer need the HTML layout (e.g. the `html` tag) inside of `fallCollection.twig` template
+        look_for_text:
+            type: http
+            assertTrue: body() matches /The fall products are coming soon!/
+            failure: I don't see the *The fall products are coming soon!* text being printed!?
+
+layouttemplateinheritance_fixextendserrorcoding:
+    question: >
+        Oh no! The intern did their best, but left this template with a big error!
+        They're back partying at university, so you need to find the mistake and
+        get this template working again.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        layout.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_text:
+            type: http
+            assertTrue: body() matches /The fall products are coming soon!/
+            failure: I don't see the *"The fall products are coming soon!"* text being printed!?
+
+layouttemplateinheritance_addblockandoverridecoding:
+    question: >
+        Every page on the site has our tag line at the bottom:
+        `You're hip, you're cool, you're a penguin!`. But on the fall collection page,
+        you need to override that to say: `Winter is coming! Get your pants!`.
+
+        Update `layout.twig` so that we can override this phrase. Then actually override it in
+        `fallCollection.twig`. Just make sure that `You're hip, you're cool, you're
+        a penguin!` is still the default tag line, for all the other templates that
+        *don't* override it.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        layout.twig: ~
+    features:
+        editor: ~
+        browser: ~
+#   @TODO Add context:
+#    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_text_1:
+            type: http
+            assertTrue: body() matches /Winter is coming! Get your pants!/
+            failure: I don't see the *Winter is coming! Get your pants!* text being printed!?
+        look_for_footer_1:
+            type: http
+            assertTrue: css('footer') matches /Winter is coming! Get your pants!/
+            failure: It looks like the `footer` HTML tag is gone. Print the text inside of this tag.
+        look_for_footer_2:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /<footer/
+            failure: You don't need to have the `footer` tag inside of `fallCollection.twig`. Instead, only put this `layout.twig`, and make your block only override the contents *inside* of it
+        look_for_text_2:
+            type: php
+            assertTrue: input('layout.twig') matches /You're hip, you're cool, you're a penguin!/
+            failure: Oh no! The original caption - *"You're hip, you're cool, you're a penguin!"* will now be missing from every other template that does *not* override the block. Make this be the default footer content.
