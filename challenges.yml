@@ -11,8 +11,8 @@ basics_printvariablecoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#   $context->addVariable('collectionTitle', 'Fall in love and look your best in the snow.');
+    # @TODO Add context:
+    # $context->addVariable('collectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_variable:
             type: php
@@ -37,13 +37,13 @@ basics_forloopcoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#   $context->addVariable('products', array(
-#       'The Black and Tan Trouser',
-#       'Antarctic Snow Pants (in leopard seal print)',
-#       'South Shore Swim Shorts',
-#       'Starfish Halloween Costume'
-#   ));
+    #   @TODO Add context:
+    #   $context->addVariable('products', array(
+    #       'The Black and Tan Trouser',
+    #       'Antarctic Snow Pants (in leopard seal print)',
+    #       'South Shore Swim Shorts',
+    #       'Starfish Halloween Costume'
+    #   ));
     grading:
         look_for_do_syntax:
             type: php
@@ -113,8 +113,8 @@ functionsfilters_datefiltercoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#   $context->addVariable('saleStartsAt', $this->getSaleStartsAt());
+    #   @TODO Add context:
+    #   $context->addVariable('saleStartsAt', $this->getSaleStartsAt());
     grading:
         look_for_variable:
             type: php
@@ -125,7 +125,7 @@ functionsfilters_datefiltercoding:
             assertTrue: input('fallCollection.twig') matches /F jS/
             failure: Make sure you use the `F jS` (e.g. January 5th) format for the date
         # @TODO Don't know how we can test this:
-#        $htmlGrader->assertElementContains('h3', $this->getSaleStartsAt()->format('F jS'));
+        # $htmlGrader->assertElementContains('h3', $this->getSaleStartsAt()->format('F jS'));
 
 functionsfilters_randomfunctionwithfiltercoding:
     question: >
@@ -140,13 +140,13 @@ functionsfilters_randomfunctionwithfiltercoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#            $context->addVariable('products', array(
-#                'The Black and Tan Trouser',
-#                'Antarctic Snow Pants (in leopard seal print)',
-#                'South Shore Swim Shorts',
-#                'Starfish Halloween Costume'
-#            ));
+    #   @TODO Add context:
+    #            $context->addVariable('products', array(
+    #                'The Black and Tan Trouser',
+    #                'Antarctic Snow Pants (in leopard seal print)',
+    #                'South Shore Swim Shorts',
+    #                'Starfish Halloween Costume'
+    #            ));
     grading:
         look_for_random:
             type: php
@@ -188,11 +188,11 @@ functionsfilters_dumpfindvariablecoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#   $context->addVariable(
-#       'fallCollectionPromoDescription',
-#       'Still wearing your summer swim shorts? Time to plan for the 9 month winter in style. Look no further than our fall collection at Penguins Pants Plus!'
-#   );
+    #   @TODO Add context:
+    #   $context->addVariable(
+    #       'fallCollectionPromoDescription',
+    #       'Still wearing your summer swim shorts? Time to plan for the 9 month winter in style. Look no further than our fall collection at Penguins Pants Plus!'
+    #   );
     grading:
         look_for_random:
             type: php
@@ -217,14 +217,14 @@ objectsandarrays_printrandomarraykeycoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#    $context->addVariable('products', array(
-#        'The Black and Tan Trouser',
-#        'Antarctic Snow Pants (in leopard seal print)',
-#        'South Shore Swim Shorts',
-#        'Starfish Halloween Costume'
-#    ));
-#    $context->addVariable('randomProductKey', rand(0, 3));
+    #   @TODO Add context:
+    #    $context->addVariable('products', array(
+    #        'The Black and Tan Trouser',
+    #        'Antarctic Snow Pants (in leopard seal print)',
+    #        'South Shore Swim Shorts',
+    #        'Starfish Halloween Costume'
+    #    ));
+    #    $context->addVariable('randomProductKey', rand(0, 3));
     grading:
         look_for_random_array_key:
             type: php
@@ -247,14 +247,14 @@ objectsandarrays_printproductobjectscoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#    $context->requireFile('PantsProduct.php');
-#    $context->addVariable('products', array(
-#        new \PantsProduct('The Black and Tan Trouser', 50),
-#        new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
-#        new \PantsProduct('South Shore Swim Shorts', 49),
-#        new \PantsProduct('Starfish Halloween Costume', 35)
-#    ));
+    #   @TODO Add context:
+    #    $context->requireFile('PantsProduct.php');
+    #    $context->addVariable('products', array(
+    #        new \PantsProduct('The Black and Tan Trouser', 50),
+    #        new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
+    #        new \PantsProduct('South Shore Swim Shorts', 49),
+    #        new \PantsProduct('Starfish Halloween Costume', 35)
+    #    ));
     grading:
         look_for_name:
             type: http
@@ -289,17 +289,17 @@ layouttemplateinheritance_createlayoutremoveduplicationcoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    #   @TODO Add context:
+    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_extends_1:
             type: php
             assertTrue: input('fallCollection.twig') matches / extends +('|")layout.twig('|") *%}/
-            failure: `fallCollection.twig` template needs to *extend* `layout.twig`
+            failure: The `fallCollection.twig` template needs to *extend* `layout.twig`
         look_for_extends_2:
             type: php
             assertTrue: input('mainCollection.twig') matches / extends +('|")layout.twig('|") *%}/
-            failure: `mainCollection.twig` template needs to "extend" `layout.twig`
+            failure: The `mainCollection.twig` template needs to "extend" `layout.twig`
         look_for_opening_html:
             type: php
             assertTrue: input('layout.twig') matches /<html/
@@ -333,8 +333,8 @@ layouttemplateinheritance_fixextendserrorcoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    #   @TODO Add context:
+    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_text:
             type: http
@@ -358,8 +358,8 @@ layouttemplateinheritance_addblockandoverridecoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    #   @TODO Add context:
+    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_text_1:
             type: http
@@ -394,8 +394,8 @@ includingothertemplates_useincludecoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    #   @TODO Add context:
+    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_text:
             type: http
@@ -490,13 +490,13 @@ testsifstatements_testifoddcoding:
     features:
         editor: ~
         browser: ~
-#   @TODO Add context:
-#     $context->requireFile('PantsProduct.php');
-#     $context->addVariable('products', array(
-#         new \PantsProduct('The Black and Tan Trouser', 50),
-#         new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
-#         new \PantsProduct('South Shore Swim Shorts', 49),
-#     ));
+    #   @TODO Add context:
+    #     $context->requireFile('PantsProduct.php');
+    #     $context->addVariable('products', array(
+    #         new \PantsProduct('The Black and Tan Trouser', 50),
+    #         new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
+    #         new \PantsProduct('South Shore Swim Shorts', 49),
+    #     ));
     grading:
         look_for_text:
             type: http
@@ -538,7 +538,7 @@ testsifstatements_complextestandnotcoding:
         look_for_is_not_odd:
             type: php
             assertTrue: input('_featuredProduct.twig') matches /is not odd/
-            failure: Use `not odd` to make sure `quantityRemaining` is not an odd number. (Hint: you could also use `is even` in real life... but not to pass this challenge)
+            failure: 'Use `not odd` to make sure `quantityRemaining` is not an odd number. (Hint: you could also use `is even` in real life... but not to pass this challenge)'
 
 # ForLoopInlineIf
 forloopinlineif_validforloopvariablemc:
@@ -551,10 +551,10 @@ forloopinlineif_validforloopvariablemc:
     features:
         multiple_choice:
             choices:
-                a: `{% if loop.first %}`
-                b: `{{ loop.previous }}`
-                c: `{{ loop.index0 }}`
-                d: `{% if loop.length > 5 %}`
+                a: '`{% if loop.first %}`'
+                b: '`{{ loop.previous }}`'
+                c: '`{{ loop.index0 }}`'
+                d: '`{% if loop.length > 5 %}`'
             correct: b
 
 forloopinlineif_forelsecoding:
@@ -569,8 +569,8 @@ forloopinlineif_forelsecoding:
     features:
         editor: ~
         browser: ~
-# @TODO Add context:
-# $context->addVariable('products', array());
+    # @TODO Add context:
+    # $context->addVariable('products', array());
     grading:
         look_for_else:
             type: php
@@ -599,14 +599,14 @@ forloopinlineif_onelineifstatementcoding:
     features:
         editor: ~
         browser: ~
-# @TODO Add context:
-#        $context->requireFile('PantsProduct.php');
-#        $context->addVariable('products', array(
-#            new \PantsProduct('The Black and Tan Trouser', 50, 0),
-#            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
-#            new \PantsProduct('South Shore Swim Shorts', 49, 0),
-#            new \PantsProduct('Starfish Halloween Costume', 35, 62)
-#        ));
+    # @TODO Add context:
+    #        $context->requireFile('PantsProduct.php');
+    #        $context->addVariable('products', array(
+    #            new \PantsProduct('The Black and Tan Trouser', 50, 0),
+    #            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
+    #            new \PantsProduct('South Shore Swim Shorts', 49, 0),
+    #            new \PantsProduct('Starfish Halloween Costume', 35, 62)
+    #        ));
     grading:
         assert_text_1:
             type: http
@@ -637,14 +637,14 @@ forloopinlineif_fortagconditionscoding:
     features:
         editor: ~
         browser: ~
-# @TODO Add context:
-#        $context->requireFile('PantsProduct.php');
-#        $context->addVariable('products', array(
-#            new \PantsProduct('The Black and Tan Trouser', 50, 0),
-#            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
-#            new \PantsProduct('South Shore Swim Shorts', 49, 0),
-#            new \PantsProduct('Starfish Halloween Costume', 35, 62)
-#        ));
+    # @TODO Add context:
+    #        $context->requireFile('PantsProduct.php');
+    #        $context->addVariable('products', array(
+    #            new \PantsProduct('The Black and Tan Trouser', 50, 0),
+    #            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
+    #            new \PantsProduct('South Shore Swim Shorts', 49, 0),
+    #            new \PantsProduct('Starfish Halloween Costume', 35, 62)
+    #        ));
     grading:
         look_for_text_1:
             type: http
@@ -657,7 +657,7 @@ forloopinlineif_fortagconditionscoding:
         look_for_if:
             type: php
             assertFalse: input('fallCollection.twig') matches /{% if/
-            failure: Hide the products with zero quantity, but without a new `{% if ...` statement: add an `if` part to the `{% for ...` tag.
+            failure: 'Hide the products with zero quantity, but without a new `{% if ...` statement: add an `if` part to the `{% for ...` tag.'
 
 # MistakesMacros
 mistakesmacros_includemistakecoding:
@@ -677,8 +677,8 @@ mistakesmacros_includemistakecoding:
     grading:
         look_for_text:
             type: http
-            assertTrue: body() matches /due to: little wings/
-            failure: I see the *"due to: little wings"* text being printed!?
+            assertTrue: 'body() matches /due to: little wings/'
+            failure: 'I see the *"due to: little wings"* text being printed!?'
 
 mistakesmacros_blankvariableerrormc:
     question: >
@@ -729,8 +729,8 @@ mistakesmacros_sizechartmacrocoding:
     features:
         editor: ~
         browser: ~
-# @TODO Add context:
-# $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    # @TODO Add context:
+    # $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_macro_definition:
             type: php
@@ -782,8 +782,8 @@ extracreditescaping_sidebarblockcoding:
     features:
         editor: ~
         browser: ~
-# @TODO Add context:
-# $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    # @TODO Add context:
+    # $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_block:
             type: php
@@ -828,11 +828,11 @@ extracreditescaping_wysiwygfiltercoding:
     features:
         editor: ~
         browser: ~
-# @TODO Add context:
-#          $context->requireFile('PantsProduct.php');
-#          $product = new \PantsProduct('The Black and Tan Trouser', 50);
-#          $product->setDescription('The <strong>Hottest</strong> pants this fall!');
-#          $context->addVariable('product', $product);
+    # @TODO Add context:
+    #          $context->requireFile('PantsProduct.php');
+    #          $product = new \PantsProduct('The Black and Tan Trouser', 50);
+    #          $product->setDescription('The <strong>Hottest</strong> pants this fall!');
+    #          $context->addVariable('product', $product);
     grading:
         look_for_tag:
             type: http
