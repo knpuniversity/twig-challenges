@@ -551,10 +551,22 @@ forloopinlineif_validforloopvariablemc:
     features:
         multiple_choice:
             choices:
-                a: '`{% if loop.first %}`'
-                b: '`{{ loop.previous }}`'
-                c: '`{{ loop.index0 }}`'
-                d: '`{% if loop.length > 5 %}`'
+                a: |
+                    ```twig
+                    {% if loop.first %}
+                    ```
+                b: |
+                    ```twig
+                    {{ loop.previous }}
+                    ```
+                c: |
+                    ```twig
+                    {{ loop.index0 }}
+                    ```
+                d: |
+                    ```twig
+                    {% if loop.length > 5 %}
+                    ```
             correct: b
 
 forloopinlineif_forelsecoding:
@@ -692,7 +704,7 @@ mistakesmacros_blankvariableerrormc:
 
         If you see the following error, what's the likely cause?:
 
-        Item "name" for "" does not exist in homepage.twig
+        > Item "name" for "" does not exist in `homepage.twig`
     explanation: |
         This is a classic error that means that `product` is empty - like `null`, or an empty
         string - instead of it being an object or an array (which is what we were expecting).
@@ -810,9 +822,18 @@ extracreditescaping_badtwigcodemc:
     features:
         multiple_choice:
             choices:
-                a: "`{{ ('Hello '~name)|upper }}`"
-                b: "`{{- 'Hello'|upper -}}`"
-                c: "`{~ name|upper ~}`"
+                a: |
+                    ```twig
+                    {{ ('Hello '~name)|upper }}
+                    ```
+                b: |
+                    ```twig
+                    {{- 'Hello'|upper -}}
+                    ```
+                c: |
+                    ```twig
+                    {~ name|upper ~}
+                    ```
             correct: c
 
 extracreditescaping_wysiwygfiltercoding:
