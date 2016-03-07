@@ -1,6 +1,6 @@
 # Basics
 basics_printvariablecoding:
-    question: >
+    question: |
         At Penguins Pants Plus, the tailors have been working really hard
         on the fall collection, and we're helping them out by building
         the template for this page! A `collectionTitle` variable has been
@@ -26,7 +26,7 @@ basics_printvariablecoding:
             failure: I don't see the text of `collectionTitle` variable being printed in `h1`!?
 
 basics_forloopcoding:
-    question: >
+    question: |
         The fall collection is done! Dapper penguins are practically pounding
         their flippers on our door to get a sneak peek of this season's latest
         styles (this year, it's lots of black and white). Loop over the `products`
@@ -63,9 +63,9 @@ basics_forloopcoding:
             failure: I don't see the products' text being printed in `h3`!?
 
 basics_incorrectopentagsmc:
-    question: >
+    question: |
         Which of the following is **incorrect** Twig code:
-    explanation: >
+    explanation: |
         * A) is correct because whitespace - even line breaks - inside Twig code are ok
         (and actually, have no effect!)
 
@@ -80,20 +80,20 @@ basics_incorrectopentagsmc:
     features:
         multiple_choice:
             choices:
-                a: >
+                a: |
                     ```twig
                     {{
                     pageTitle     }}
                     ```
-                b: >
+                b: |
                     ```twig
                     {# for nonExistentVariable in bad syntax here #}
                     ```')
-                c: >
+                c: |
                     ```twig
                     {{ for product in my_products }}
                     ```
-                d: >
+                d: |
                     ```twig
                     {% set penguins = 'dapper' %}
                     ```
@@ -101,7 +101,7 @@ basics_incorrectopentagsmc:
 
 # FunctionsFilters
 functionsfilters_datefiltercoding:
-    question: >
+    question: |
         The penguins will want to get their flippers on these pants as
         *soon* as possible. So, we're passing in a `saleStartsAt` date
         variable that's set to *when* these fresh pants are available. Print
@@ -128,7 +128,7 @@ functionsfilters_datefiltercoding:
         # $htmlGrader->assertElementContains('h3', $this->getSaleStartsAt()->format('F jS'));
 
 functionsfilters_randomfunctionwithfiltercoding:
-    question: >
+    question: |
         We don't really know what color we'll have for each item yet. But to
         create a realistic demo, use the `random()` function to randomly
         print either `black`, `white` or `green` for the color of each
@@ -174,7 +174,7 @@ functionsfilters_randomfunctionwithfiltercoding:
             failure: The output does not contain any of the colors BLACK, GREEN or WHITE - are you randomly selecting one of these and uppercasing them?
 
 functionsfilters_dumpfindvariablecoding:
-    question: >
+    question: |
         All the AirPupnMeow PHP developers are at lunch. You know that
         a new variable is being passed to the template that's set to
         the description for the fall collection, but you don't know what
@@ -205,7 +205,7 @@ functionsfilters_dumpfindvariablecoding:
 
 # ObjectsAndArrays
 objectsandarrays_printrandomarraykeycoding:
-    question: >
+    question: |
         Penguins are known to be indecisive. To make things easier for them,
         we're creating a random product selector. In the template, you have a
         new `randomProductKey` variable, that's a number from 0 to 3 - matching
@@ -232,7 +232,7 @@ objectsandarrays_printrandomarraykeycoding:
             failure: Use the `products[variableName]` syntax to get a variable key from the array.
 
 objectsandarrays_printproductobjectscoding:
-    question: >
+    question: |
         The backend developers are getting really fancy and have changed the
         products from simple strings to objects! Use the `dump()` function - or look
         at the `PantsProduct` class - to check it out.
@@ -275,7 +275,7 @@ objectsandarrays_printproductobjectscoding:
 
 # LayoutTemplateInheritance
 layouttemplateinheritance_createlayoutremoveduplicationcoding:
-    question: >
+    question: |
         The team hates duplication! But now we have two templates: one for the
         main collection, and another for the fall collection: the whole HTML
         layout is in both! Move the duplicated layout HTML into the new `layout.twig`
@@ -322,7 +322,7 @@ layouttemplateinheritance_createlayoutremoveduplicationcoding:
             failure: I don't see the *The fall products are coming soon!* text being printed!?
 
 layouttemplateinheritance_fixextendserrorcoding:
-    question: >
+    question: |
         Oh no! The intern did their best, but left this template with a big error!
         They're back partying at university, so you need to find the mistake and
         get this template working again.
@@ -342,7 +342,7 @@ layouttemplateinheritance_fixextendserrorcoding:
             failure: I don't see the *"The fall products are coming soon!"* text being printed!?
 
 layouttemplateinheritance_addblockandoverridecoding:
-    question: >
+    question: |
         Every page on the site has our tag line at the bottom:
         `You're hip, you're cool, you're a penguin!`. But on the fall collection page,
         you need to override that to say: `Winter is coming! Get your pants!`.
@@ -380,7 +380,7 @@ layouttemplateinheritance_addblockandoverridecoding:
 
 # IncludingOtherTemplates
 includingothertemplates_useincludecoding:
-    question: >
+    question: |
         More duplication!!?? It must have been the intern! Refactor the
         "Featured Product" section by moving it into `_featuredProduct.twig` and
         including this from both templates.
@@ -419,7 +419,7 @@ includingothertemplates_useincludecoding:
             failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `fallCollection.twig`
 
 includingothertemplates_includeandvariablesmc:
-    question: >
+    question: |
         Check out the following code:
 
         ```twig
@@ -452,7 +452,7 @@ includingothertemplates_includeandvariablesmc:
 
         Now, suppose that `homepage.twig` is rendered and passed a `food` variable
         set to `pizza`. What will be printed inside the `h4` tag?
-    explanation: >
+    explanation: |
         Look at each variable, one at a time:
 
         * `color`: This is passed from `homepage.twig` to `_otherTemplate.twig` as `blue`.
@@ -480,7 +480,7 @@ includingothertemplates_includeandvariablesmc:
 
 # TestsIfStatements
 testsifstatements_testifoddcoding:
-    question: >
+    question: |
         Penguins are very superstitious about odd numbers. If we have an odd number
         of total pants available, print a message that says:
         `We promise, 1 more pair of pants is coming very soon!` to calm their fears.
@@ -512,7 +512,7 @@ testsifstatements_testifoddcoding:
             failure: Use the `is odd` to see if there are an odd number of products.
 
 testsifstatements_complextestandnotcoding:
-    question: >
+    question: |
         When we show the featured product, sometimes we pass a `quantityRemaining` variable
         to `_featuredProduct.twig`, but sometimes we don't. To make matters worse, remember that
         Penguins hate odd numbers! Add an `if` statement so that the `featured-quantity`
@@ -542,9 +542,9 @@ testsifstatements_complextestandnotcoding:
 
 # ForLoopInlineIf
 forloopinlineif_validforloopvariablemc:
-    question: >
+    question: |
         Which of the following is **not** a valid thing you can do with the `loop` variable?
-    explanation: >
+    explanation: |
         Twig's documentation for the [for](http://twig.sensiolabs.org/doc/tags/for.html#the-loop-variable)
         tag shows that all of these are valid, except for `loop.previous` - we made that
         one up ;).
@@ -558,7 +558,7 @@ forloopinlineif_validforloopvariablemc:
             correct: b
 
 forloopinlineif_forelsecoding:
-    question: >
+    question: |
         This template works well enough, but it could be easier! Leverage Twig's
         for-else ability to remove the if statement at the bottom. We're passing
         in an empty `products` array variable, so make sure that `No pants for you!`
@@ -586,7 +586,7 @@ forloopinlineif_forelsecoding:
             failure: You don't need the `{% if` statement that checks for the products anymore!
 
 forloopinlineif_onelineifstatementcoding:
-    question: >
+    question: |
         The intern added an if statement that either prints each product's
         quantity or an "out of stock" message. It works great! But I can tell that
         you like a challenge: see if you can write this all in one line, inside a
@@ -622,7 +622,7 @@ forloopinlineif_onelineifstatementcoding:
             failure: Remove the `{% if` statement and replace it with a single line that does the same thing.
 
 forloopinlineif_fortagconditionscoding:
-    question: >
+    question: |
         Change of plan! Instead of printing "out of stock", management wants to completely
         hide any products that aren't available. That's no problem, because you've just read
         the documentation about the `for` tag and found out that you can add
@@ -661,7 +661,7 @@ forloopinlineif_fortagconditionscoding:
 
 # MistakesMacros
 mistakesmacros_includemistakecoding:
-    question: >
+    question: |
         You've been coding like a machine until someone brought birthday cake
         <i class="fa fa-birthday-cake"></i> to the office and you quit working
         immediately! Now, in a slight sugar-coma, you're ready to keep working.
@@ -681,7 +681,7 @@ mistakesmacros_includemistakecoding:
             failure: 'I see the *"due to: little wings"* text being printed!?'
 
 mistakesmacros_blankvariableerrormc:
-    question: >
+    question: |
         Check out the following code:
 
         ```twig
@@ -693,7 +693,7 @@ mistakesmacros_blankvariableerrormc:
         If you see the following error, what's the likely cause?:
 
         Item "name" for "" does not exist in homepage.twig
-    explanation: >
+    explanation: |
         This is a classic error that means that `product` is empty - like `null`, or an empty
         string - instead of it being an object or an array (which is what we were expecting).
         If `B` or `C` were true, you would see a different error. And `D` is completely wrong:
@@ -709,7 +709,7 @@ mistakesmacros_blankvariableerrormc:
             correct: a
 
 mistakesmacros_sizechartmacrocoding:
-    question: >
+    question: |
         Penguins are friendly, relaxed creatures. And they hate it when their pants
         fit too tight. To help them out, we've included a sizing chart in `mainCollection.twig`.
         We want to re-use that sizing chart on `fallCollection.twig`, but not show the "XL" column,
@@ -763,7 +763,7 @@ mistakesmacros_sizechartmacrocoding:
 
 # ExtraCreditEscaping
 extracreditescaping_sidebarblockcoding:
-    question: >
+    question: |
         Most pages override the sidebar block, but not `fallCollection.twig`!
         Unfortunately, even though the sidebar is empty, the `<div class="col-xs-3">`
         element in `layout.twig` still exists, so the content is pushed to the right.
@@ -800,7 +800,7 @@ extracreditescaping_sidebarblockcoding:
 
 extracreditescaping_badtwigcodemc:
     question: Which of the following is bad Twig code:
-    explanation: >
+    explanation: |
         * Answer (A) uses the `~` to concatenate a string and a variable, totally legal!
 
         * Answer (B) adds a `-` on the opening and closing `{{` in order to remove any
@@ -816,7 +816,7 @@ extracreditescaping_badtwigcodemc:
             correct: c
 
 extracreditescaping_wysiwygfiltercoding:
-    question: >
+    question: |
         In our admin section, the content penguins are using a WYSIWYG editor to edit the
         pant descriptions.  But immediately, ugly HTML tags started printing out, instead
         of being rendered! Add a filter to save the day.
