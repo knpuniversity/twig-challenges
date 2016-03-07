@@ -88,7 +88,7 @@ basics_incorrectopentagsmc:
                 b: |
                     ```twig
                     {# for nonExistentVariable in bad syntax here #}
-                    ```')
+                    ```
                 c: |
                     ```twig
                     {{ for product in my_products }}
