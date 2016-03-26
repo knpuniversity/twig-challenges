@@ -23,45 +23,37 @@ basics_printvariablecoding:
             failure: I don't see the `collectionTitle` variable. Make sure you print it in the template.
         look_for_text:
             type: http
-            assertTrue: css('h1').first().text() matches '/Fall in love and look your best in the snow/'
+            assertTrue: css('h1').text() matches '/Fall in love and look your best in the snow/'
             failure: I don't see the text of `collectionTitle` variable being printed in `h1`!?
 
 basics_forloopcoding:
     question: |
         The fall collection is done! Dapper penguins are practically pounding
         their flippers on our door to get a sneak peek of this season's latest
-        styles (this year, it's lots of black and white). Loop over the `products`
-        variable and print each inside an `h3` tag.
-    step: ~
+        styles (this year, it's lots of black and white).
+    question_steps:
+        - Loop over a new `products` variable and print each inside an `h3` tag.
+    step: basic-for-loop-coding
     files:
         fallCollection.twig: ~
     features:
         editor: ~
-        browser: ~
-    #   @TODO Add context:
-    #   $context->addVariable('products', array(
-    #       'The Black and Tan Trouser',
-    #       'Antarctic Snow Pants (in leopard seal print)',
-    #       'South Shore Swim Shorts',
-    #       'Starfish Halloween Costume'
-    #   ));
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     grading:
         look_for_do_syntax:
             type: php
-            assertTrue: input('fallCollection.twig') matches /{%/
+            assertTrue: input('fallCollection.twig') matches '/{%/'
             failure: Make sure to use the "do" something tag `{%` with the `for` tag
         look_for_for_loop:
             type: php
-            assertTrue: input('fallCollection.twig') matches /for/
-            failure: Use the `for` tag to loop collection
+            assertTrue: input('fallCollection.twig') matches '/for/'
+            failure: Use the `for` tag to loop through the collection
         look_for_1:
             type: http
-            assertTrue: css('h3') matches /The Black and Tan Trouser/
-            failure: I don't see the products' text being printed in `h3`!?
-        look_for_2:
-            type: http
-            assertTrue: css('h3') matches /South Shore Swim Shorts/
-            failure: I don't see the products' text being printed in `h3`!?
+            assertTrue: css('h3').text() matches '/The Black and Tan Trouser/'
+            failure: I don't see the products' text being printed in the `h3`!?
 
 basics_incorrectopentagsmc:
     question: |
@@ -113,17 +105,19 @@ functionsfilters_datefiltercoding:
         fallCollection.twig: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #   $context->addVariable('saleStartsAt', $this->getSaleStartsAt());
     grading:
         look_for_variable:
             type: php
-            assertTrue: input('fallCollection.twig') matches /{{ *saleStartsAt/
+            assertTrue: input('fallCollection.twig') matches '/{{ *saleStartsAt/'
             failure: I don't see the `saleStartsAt` variable. Ensure you added it into the template.
         look_for_date_format:
             type: php
-            assertTrue: input('fallCollection.twig') matches /F jS/
+            assertTrue: input('fallCollection.twig') matches '/F jS/'
             failure: Make sure you use the `F jS` (e.g. January 5th) format for the date
         # @TODO Don't know how we can test this:
         # $htmlGrader->assertElementContains('h3', $this->getSaleStartsAt()->format('F jS'));
@@ -140,7 +134,9 @@ functionsfilters_randomfunctionwithfiltercoding:
         fallCollection.twig: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #            $context->addVariable('products', array(
     #                'The Black and Tan Trouser',
@@ -151,27 +147,27 @@ functionsfilters_randomfunctionwithfiltercoding:
     grading:
         look_for_random:
             type: php
-            assertTrue: input('fallCollection.twig') matches /{{ *random(/
+            assertTrue: input('fallCollection.twig') matches '/{{ *random(/'
             failure: Are you using the `random()` function?
         look_for_upper:
             type: php
-            assertTrue: input('fallCollection.twig') matches /|upper *}}/
+            assertTrue: input('fallCollection.twig') matches '/|upper *}}/'
             failure: Don't forget to use the `upper` filter to uppercase the colors!
         look_for_black:
             type: php
-            assertTrue: input('fallCollection.twig') matches /black/
+            assertTrue: input('fallCollection.twig') matches '/black/'
             failure: Use `black` (lowercase) as one of the random colors
         look_for_white:
             type: php
-            assertTrue: input('fallCollection.twig') matches /white/
+            assertTrue: input('fallCollection.twig') matches '/white/'
             failure: Use `white` (lowercase) as one of the random colors
         look_for_green:
             type: php
-            assertTrue: input('fallCollection.twig') matches /green/
+            assertTrue: input('fallCollection.twig') matches '/green/'
             failure: Use `green` (lowercase) as one of the random colors
         assert_color:
             type: http
-            assertTrue: body() matches /BLACK|WHITE|GREEN/
+            assertTrue: body() matches '/BLACK|WHITE|GREEN/'
             failure: The output does not contain any of the colors BLACK, GREEN or WHITE - are you randomly selecting one of these and uppercasing them?
 
 functionsfilters_dumpfindvariablecoding:
@@ -188,7 +184,9 @@ functionsfilters_dumpfindvariablecoding:
         fallCollection.twig: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #   $context->addVariable(
     #       'fallCollectionPromoDescription',
@@ -197,11 +195,11 @@ functionsfilters_dumpfindvariablecoding:
     grading:
         look_for_random:
             type: php
-            assertTrue: input('fallCollection.twig') matches /{{ *fallCollectionPromoDescription/
+            assertTrue: input('fallCollection.twig') matches '/{{ *fallCollectionPromoDescription/'
             failure: I don't see you printing the unknown variable yet...
         look_for_random:
             type: http
-            assertTrue: body() matches /Still wearing your summer swim shorts/
+            assertTrue: body() matches '/Still wearing your summer swim shorts/'
             failure: I don't see the text of `fallCollectionPromoDescription` variable being printed!?
 
 # ObjectsAndArrays
@@ -217,7 +215,9 @@ objectsandarrays_printrandomarraykeycoding:
         fallCollection.twig: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #    $context->addVariable('products', array(
     #        'The Black and Tan Trouser',
@@ -229,7 +229,7 @@ objectsandarrays_printrandomarraykeycoding:
     grading:
         look_for_random_array_key:
             type: php
-            assertTrue: input('fallCollection.twig') matches /products\[randomProductKey\]/
+            assertTrue: input('fallCollection.twig') matches '/products\[randomProductKey\]/'
             failure: Use the `products[variableName]` syntax to get a variable key from the array.
 
 objectsandarrays_printproductobjectscoding:
@@ -247,7 +247,9 @@ objectsandarrays_printproductobjectscoding:
         PantsProduct.php: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #    $context->requireFile('PantsProduct.php');
     #    $context->addVariable('products', array(
@@ -259,19 +261,19 @@ objectsandarrays_printproductobjectscoding:
     grading:
         look_for_name:
             type: http
-            assertTrue: body() matches /The Black and Tan Trouser/
+            assertTrue: body() matches '/The Black and Tan Trouser/'
             failure: Are you printing the product names?
         look_for_price:
             type: http
-            assertTrue: body() matches /99/
+            assertTrue: body() matches '/99/'
             failure: Are you printing the product prices?
         look_for_name_property:
             type: php
-            assertTrue: input('fallCollection.twig') matches /{{ *product.name/
+            assertTrue: input('fallCollection.twig') matches '/{{ *product.name/'
             failure: You can just use `product.name` to print the name. Behind the scenes Twig calls the `getName()` function on `PantsProduct`.
         look_for_price_property:
             type: php
-            assertTrue: input('fallCollection.twig') matches /{{ *product.price/
+            assertTrue: input('fallCollection.twig') matches '/{{ *product.price/'
             failure: You can just use `product.price` to print the price. Behind the scenes Twig calls the `getPrice()` function on `PantsProduct`.
 
 # LayoutTemplateInheritance
@@ -289,37 +291,39 @@ layouttemplateinheritance_createlayoutremoveduplicationcoding:
         layout.twig: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_extends_1:
             type: php
-            assertTrue: input('fallCollection.twig') matches / extends +('|")layout.twig('|") *%}/
+            assertTrue: input('fallCollection.twig') matches '/ extends +('|")layout.twig('|") *%}/'
             failure: The `fallCollection.twig` template needs to *extend* `layout.twig`
         look_for_extends_2:
             type: php
-            assertTrue: input('mainCollection.twig') matches / extends +('|")layout.twig('|") *%}/
+            assertTrue: input('mainCollection.twig') matches '/ extends +('|")layout.twig('|") *%}/'
             failure: The `mainCollection.twig` template needs to "extend" `layout.twig`
         look_for_opening_html:
             type: php
-            assertTrue: input('layout.twig') matches /<html/
+            assertTrue: input('layout.twig') matches '/<html/'
             failure: I don't see opening `html` tag. Put the entire HTML layout into `layout.twig` template.
         look_for_closing_html:
             type: php
-            assertTrue: input('layout.twig') matches /</html>/
+            assertTrue: input('layout.twig') matches '/</html>/'
             failure: I don't see closing `html` tag. Put the entire HTML layout into `layout.twig` template
         look_for_header:
             type: php
-            assertTrue: input('layout.twig') matches /<header/
+            assertTrue: input('layout.twig') matches '/<header/'
             failure: The `header` tag belongs in `layout.twig` too, since it's repeated on both pages
         look_for_layout:
             type: php
-            assertFalse: input('fallCollection.twig') matches /<html/
+            assertFalse: input('fallCollection.twig') matches '/<html/'
             failure: You no longer need the HTML layout (e.g. the `html` tag) inside of `fallCollection.twig` template
         look_for_text:
             type: http
-            assertTrue: body() matches /The fall products are coming soon!/
+            assertTrue: body() matches '/The fall products are coming soon!/'
             failure: I don't see the *The fall products are coming soon!* text being printed!?
 
 layouttemplateinheritance_fixextendserrorcoding:
@@ -333,13 +337,15 @@ layouttemplateinheritance_fixextendserrorcoding:
         layout.twig: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_text:
             type: http
-            assertTrue: body() matches /The fall products are coming soon!/
+            assertTrue: body() matches '/The fall products are coming soon!/'
             failure: I don't see the *"The fall products are coming soon!"* text being printed!?
 
 layouttemplateinheritance_addblockandoverridecoding:
@@ -358,25 +364,27 @@ layouttemplateinheritance_addblockandoverridecoding:
         layout.twig: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_text_1:
             type: http
-            assertTrue: body() matches /Winter is coming! Get your pants!/
+            assertTrue: body() matches '/Winter is coming! Get your pants!/'
             failure: I don't see the *Winter is coming! Get your pants!* text being printed!?
         look_for_footer_1:
             type: http
-            assertTrue: css('footer') matches /Winter is coming! Get your pants!/
+            assertTrue: css('footer').text() matches '/Winter is coming! Get your pants!/'
             failure: It looks like the `footer` HTML tag is gone. Print the text inside of this tag.
         look_for_footer_2:
             type: php
-            assertFalse: input('fallCollection.twig') matches /<footer/
+            assertFalse: input('fallCollection.twig') matches '/<footer/'
             failure: You don't need to have the `footer` tag inside of `fallCollection.twig`. Instead, only put this `layout.twig`, and make your block only override the contents *inside* of it
         look_for_text_2:
             type: php
-            assertTrue: input('layout.twig') matches /You're hip, you're cool, you're a penguin!/
+            assertTrue: input('layout.twig') matches '/You're hip, you're cool, you're a penguin!/'
             failure: Oh no! The original caption - *"You're hip, you're cool, you're a penguin!"* will now be missing from every other template that does *not* override the block. Make this be the default footer content.
 
 # IncludingOtherTemplates
@@ -394,29 +402,31 @@ includingothertemplates_useincludecoding:
             read_only: true
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_text:
             type: http
-            assertTrue: body() matches /pin-striped full suit/
+            assertTrue: body() matches '/pin-striped full suit/'
             failure: I don't see the *pin-striped full suit* text being printed!?
         look_for_include_1:
             type: php
-            assertTrue: input('fallCollection.twig') matches /include/
+            assertTrue: input('fallCollection.twig') matches '/include/'
             failure: I don't see you including other template!?
         look_for_text_1:
             type: php
-            assertTrue: input('_featuredProduct.twig') matches /pin-striped full suit/
+            assertTrue: input('_featuredProduct.twig') matches '/pin-striped full suit/'
             failure: I don't see the *pin-striped full suit* text in the `_featuredProduct.twig` template!?
         look_for_text_2:
             type: php
-            assertFalse: input('fallCollection.twig') matches /pin-striped full suit/
+            assertFalse: input('fallCollection.twig') matches '/pin-striped full suit/'
             failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `fallCollection.twig`
         look_for_include_2:
             type: php
-            assertTrue: input('mainCollection.twig') matches /include/
+            assertTrue: input('mainCollection.twig') matches '/include/'
             failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `fallCollection.twig`
 
 includingothertemplates_includeandvariablesmc:
@@ -490,7 +500,9 @@ testsifstatements_testifoddcoding:
         fallCollection.twig: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     #   @TODO Add context:
     #     $context->requireFile('PantsProduct.php');
     #     $context->addVariable('products', array(
@@ -501,15 +513,15 @@ testsifstatements_testifoddcoding:
     grading:
         look_for_text:
             type: http
-            assertTrue: body() matches /We promise, 1 more pair of pants is coming very soon!/
+            assertTrue: body() matches '/We promise, 1 more pair of pants is coming very soon!/'
             failure: I don't see the *"We promise, 1 more pair of pants is coming very soon!"* text being printed!?
         look_for_length:
             type: php
-            assertTrue: input('fallCollection.twig') matches /\| *length/
+            assertTrue: input('fallCollection.twig') matches '/\| *length/'
             failure: Use the `length` filter to count the products.
         look_for_is_odd:
             type: php
-            assertTrue: input('fallCollection.twig') matches /is odd/
+            assertTrue: input('fallCollection.twig') matches '/is odd/'
             failure: Use the `is odd` to see if there are an odd number of products.
 
 testsifstatements_complextestandnotcoding:
@@ -530,15 +542,17 @@ testsifstatements_complextestandnotcoding:
             read_only: true
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     grading:
         look_for_is_defined:
             type: php
-            assertTrue: input('_featuredProduct.twig') matches /is defined/
+            assertTrue: input('_featuredProduct.twig') matches '/is defined/'
             failure: Use the `defined` to see if `quantityRemaining` is defined
         look_for_is_not_odd:
             type: php
-            assertTrue: input('_featuredProduct.twig') matches /is not odd/
+            assertTrue: input('_featuredProduct.twig') matches '/is not odd/'
             failure: 'Use `not odd` to make sure `quantityRemaining` is not an odd number. (Hint: you could also use `is even` in real life... but not to pass this challenge)'
 
 # ForLoopInlineIf
@@ -581,21 +595,23 @@ forloopinlineif_forelsecoding:
         fallCollection.twig: ~
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     # @TODO Add context:
     # $context->addVariable('products', array());
     grading:
         look_for_else:
             type: php
-            assertTrue: input('fallCollection.twig') matches /else/
+            assertTrue: input('fallCollection.twig') matches '/else/'
             failure: Use an `else` with your `for` tag.
         look_for_text:
             type: php
-            assertTrue: input('fallCollection.twig') matches /No pants for you!/
+            assertTrue: input('fallCollection.twig') matches '/No pants for you!/'
             failure: I don't see the *"No pants for you!"* text being printed!?
         look_for_if:
             type: php
-            assertFalse: input('fallCollection.twig') matches /{% if/
+            assertFalse: input('fallCollection.twig') matches '/{% if/'
             failure: You don't need the `{% if` statement that checks for the products anymore!
 
 forloopinlineif_onelineifstatementcoding:
@@ -611,7 +627,9 @@ forloopinlineif_onelineifstatementcoding:
             read_only: true
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     # @TODO Add context:
     #        $context->requireFile('PantsProduct.php');
     #        $context->addVariable('products', array(
@@ -623,15 +641,15 @@ forloopinlineif_onelineifstatementcoding:
     grading:
         assert_text_1:
             type: http
-            assertTrue: css('.stock-status') matches /Out of Stock/
+            assertTrue: css('.stock-status').text() matches '/Out of Stock/'
             failure: I see the *"The Black and Tan Trouser"* text being printed!?
         assert_text_2:
             type: http
-            assertTrue: css('.stock-status') matches /62/
+            assertTrue: css('.stock-status').text() matches '/62/'
             failure: I see the *"The Black and Tan Trouser"* text being printed!?
         assert_text:
             type: php
-            assertFalse: input('fallCollection.twig') matches /{% if/
+            assertFalse: input('fallCollection.twig') matches '/{% if/'
             failure: Remove the `{% if` statement and replace it with a single line that does the same thing.
 
 forloopinlineif_fortagconditionscoding:
@@ -649,7 +667,9 @@ forloopinlineif_fortagconditionscoding:
             read_only: true
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     # @TODO Add context:
     #        $context->requireFile('PantsProduct.php');
     #        $context->addVariable('products', array(
@@ -661,15 +681,15 @@ forloopinlineif_fortagconditionscoding:
     grading:
         look_for_text_1:
             type: http
-            assertFalse: body() matches /The Black and Tan Trouser/
+            assertFalse: body() matches '/The Black and Tan Trouser/'
             failure: I see the *"The Black and Tan Trouser"* text being printed!?
         look_for_text_2:
             type: http
-            assertTrue: body() matches /Starfish Halloween Costume/
+            assertTrue: body() matches '/Starfish Halloween Costume/'
             failure: I don't see the *"Starfish Halloween Costume"* text being printed!?
         look_for_if:
             type: php
-            assertFalse: input('fallCollection.twig') matches /{% if/
+            assertFalse: input('fallCollection.twig') matches '/{% if/'
             failure: 'Hide the products with zero quantity, but without a new `{% if ...` statement: add an `if` part to the `{% for ...` tag.'
 
 # MistakesMacros
@@ -686,11 +706,13 @@ mistakesmacros_includemistakecoding:
             read_only: true
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     grading:
         look_for_text:
             type: http
-            assertTrue: 'body() matches /due to: little wings/'
+            assertTrue: "body() matches '/due to: little wings/'"
             failure: 'I see the *"due to: little wings"* text being printed!?'
 
 mistakesmacros_blankvariableerrormc:
@@ -741,37 +763,39 @@ mistakesmacros_sizechartmacrocoding:
             read_only: true
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     # @TODO Add context:
     # $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_macro_definition:
             type: php
-            assertTrue: input('macros.twig') matches /printSizingChart(/
+            assertTrue: input('macros.twig') matches '/printSizingChart(/'
             failure: I don't see the `printSizingChart()` macro in `macros.twig`
         look_for_macro_argument:
             type: php
-            assertTrue: input('macros.twig') matches /showXLColumn/
+            assertTrue: input('macros.twig') matches '/showXLColumn/'
             failure: I don't see the `showXLColumn` argument for the `printSizingChart()` macro. Add this and use it to hide/show the XL column.
         look_for_macro_usage_1:
             type: php
-            assertTrue: input('fallCollection.twig') matches /printSizingChart(/
+            assertTrue: input('fallCollection.twig') matches '/printSizingChart(/'
             failure: You'll need to use the `printSizingChart()` macro inside `fallCollection.twig`
         look_for_macro_usage_2:
             type: php
-            assertTrue: input('mainCollection.twig') matches /printSizingChart(/
+            assertTrue: input('mainCollection.twig') matches '/printSizingChart(/'
             failure: You'll need to use the `printSizingChart` macro inside `mainCollection.twig`
         look_for_import:
             type: php
-            assertTrue: input('mainCollection.twig') matches /import/
+            assertTrue: input('mainCollection.twig') matches '/import/'
             failure: Don't forget to `import` `macros.twig` in `mainCollection.twig`.
         look_for_text_1:
             type: http
-            assertTrue: body() matches /5-15 lbs/
+            assertTrue: body() matches '/5-15 lbs/'
             failure: I don't see the text of *"5-15 lbs"* text being printed!?
         look_for_text_2:
             type: http
-            assertTrue: body() matches /61-85 lbs/
+            assertTrue: body() matches '/61-85 lbs/'
             failure: I don't see the text of *"61-85 lbs"* text being printed!?
 
 # ExtraCreditEscaping
@@ -794,21 +818,23 @@ extracreditescaping_sidebarblockcoding:
             read_only: true
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     # @TODO Add context:
     # $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_block:
             type: php
-            assertTrue: input('layout.twig') matches /block(/
+            assertTrue: input('layout.twig') matches '/block(/'
             failure: Use the `block('sidebar') function to determine if the child template has any sidebar content.
         look_for_class_1:
             type: http
-            assertFalse: body() matches /col-xs-3/
+            assertFalse: body() matches '/col-xs-3/'
             failure: Make sure the `.col-xs-3` element does not print at all, since there is no sidebar on this page.
         look_for_class_2:
             type: http
-            assertTrue: body() matches /col-xs-12/
+            assertTrue: body() matches '/col-xs-12/'
             failure: Change the main content div's class to be `col-xs-9` when there is no sidebar content.
 
 extracreditescaping_badtwigcodemc:
@@ -849,7 +875,9 @@ extracreditescaping_wysiwygfiltercoding:
             read_only: true
     features:
         editor: ~
-        browser: ~
+        browser:
+            default_uri: render.php
+            show_address_bar: false
     # @TODO Add context:
     #          $context->requireFile('PantsProduct.php');
     #          $product = new \PantsProduct('The Black and Tan Trouser', 50);
@@ -858,9 +886,9 @@ extracreditescaping_wysiwygfiltercoding:
     grading:
         look_for_tag:
             type: http
-            assertTrue: body() matches /<strong>/
+            assertTrue: body() matches '/<strong>/'
             failure: The `strong` tag still looks escaped - how can you make it raw?
         look_for_raw:
             type: php
-            assertTrue: input('singleItem.twig') matches /\| *raw/
+            assertTrue: input('singleItem.twig') matches '/\| *raw/'
             failure: Use the `raw` filter to *not* escape HTML tags.

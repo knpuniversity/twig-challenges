@@ -9,5 +9,22 @@ $loader = new \Twig_Loader_Filesystem([
     __DIR__
 ]);
 $twig = new \Twig_Environment($loader, [
-    'debug' => true
+    'debug' => true,
+    'strict_variables' => true
 ]);
+
+try {
+    $output = $twig->render('fallCollection.twig');
+} catch (\Twig_Error_Syntax $e) {
+    // this tells the grader that there was an error
+    $_ENV['language_error'] = true;
+
+    $output = 'Syntax in your Twig code: '.$e->getMessage();
+} catch (\Twig_Error_Runtime $e) {
+    // this tells the grader that there was an error
+    $_ENV['language_error'] = true;
+
+    $output = 'Runtime error in your Twig code: '.$e->getMessage();
+}
+
+echo $output;
