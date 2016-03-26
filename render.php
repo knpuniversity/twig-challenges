@@ -8,6 +8,6 @@ require __DIR__.'/vendor/autoload.php';
 $loader = new \Twig_Loader_Filesystem([
     __DIR__
 ]);
-$twig = new \Twig_Environment([$loader], [
+$twig = new \Twig_Environment($loader, [
     'debug' => true
 ]);
