@@ -1,0 +1,19 @@
+diff --git a/render.php b/render.php
+index 1ef42ca..3182578 100644
+--- a/render.php
++++ b/render.php
+@@ -15,7 +15,13 @@ $twig = new \Twig_Environment($loader, [
+ 
+ try {
+     $output = $twig->render('fallCollection.twig', [
+-        'collectionTitle' => 'Fall in love and look your best in the snow.'
++        'collectionTitle' => 'Fall in love and look your best in the snow.',
++        'products' => array(
++            'The Black and Tan Trouser',
++            'Antarctic Snow Pants (in leopard seal print)',
++            'South Shore Swim Shorts',
++            'Starfish Halloween Costume'
++        )
+     ]);
+ } catch (\Twig_Error_Syntax $e) {
+     // this tells the grader that there was an error

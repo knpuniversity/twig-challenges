@@ -8,16 +8,17 @@ index 0000000..4a6ec60
 +    <!-- print the variable here -->
 +</h1>
 diff --git a/render.php b/render.php
-index fb72eaa..e55df8b 100644
+index 8e39ce9..1ef42ca 100644
 --- a/render.php
 +++ b/render.php
-@@ -11,3 +11,9 @@ $loader = new \Twig_Loader_Filesystem([
- $twig = new \Twig_Environment($loader, [
-     'debug' => true
+@@ -14,7 +14,9 @@ $twig = new \Twig_Environment($loader, [
  ]);
-+
-+$output = $twig->render('fallCollection.twig', [
-+    'collectionTitle' => 'Fall in love and look your best in the snow.'
-+]);
-+
-+echo $output;
+ 
+ try {
+-    $output = $twig->render('fallCollection.twig');
++    $output = $twig->render('fallCollection.twig', [
++        'collectionTitle' => 'Fall in love and look your best in the snow.'
++    ]);
+ } catch (\Twig_Error_Syntax $e) {
+     // this tells the grader that there was an error
+     $_ENV['language_error'] = true;

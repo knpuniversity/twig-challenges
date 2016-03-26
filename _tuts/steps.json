@@ -14,7 +14,12 @@
             "id": "basic-print-variable-coding-solution",
             "name": "Basic: Print Variable Coding [Solution]",
             "description": null
+        },
+        {
+            "id": "basic-for-loop-coding",
+            "name": "Basic: For Loop Coding",
+            "description": null
         }
     ],
-    "sha": "3e2e4653469647c68a0355292301778691f2a1ab"
+    "sha": "73755dae879a18a9a518c3058fdf968246873941"
 }
