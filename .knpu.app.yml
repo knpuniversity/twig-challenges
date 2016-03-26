@@ -1,0 +1,8 @@
+web:
+    type: twig
+    port: 8000
+    command: "php -S 0.0.0.0:8000"
+
+hooks:
+    build: ''
+    deploy: ''

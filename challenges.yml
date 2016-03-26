@@ -1,0 +1,865 @@
+# Basics
+basics_printvariablecoding:
+    question: |
+        At Penguins Pants Plus, the tailors have been working really hard
+        on the fall collection, and we're helping them out by building
+        the template for this page! A `collectionTitle` variable has been
+        passed into the template: print it inside the `<h1>` tag!
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    # @TODO Add context:
+    # $context->addVariable('collectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_variable:
+            type: php
+            # @TODO Should we move input() function from PHP expression provider to the HTTP one?
+            # It's a bit awkward when I use it for Twig files
+            assertTrue: input('fallCollection.twig') matches /{{ *collectionTitle *}}/
+            failure: I don't see the `collectionTitle` variable. Ensure you added it into the template.
+        look_for_text:
+            type: http
+            assertTrue: css('h1') matches /Fall in love and look your best in the snow./
+            failure: I don't see the text of `collectionTitle` variable being printed in `h1`!?
+
+basics_forloopcoding:
+    question: |
+        The fall collection is done! Dapper penguins are practically pounding
+        their flippers on our door to get a sneak peek of this season's latest
+        styles (this year, it's lots of black and white). Loop over the `products`
+        variable and print each inside an `h3` tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #   $context->addVariable('products', array(
+    #       'The Black and Tan Trouser',
+    #       'Antarctic Snow Pants (in leopard seal print)',
+    #       'South Shore Swim Shorts',
+    #       'Starfish Halloween Costume'
+    #   ));
+    grading:
+        look_for_do_syntax:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{%/
+            failure: Make sure to use the "do" something tag `{%` with the `for` tag
+        look_for_for_loop:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /for/
+            failure: Use the `for` tag to loop collection
+        look_for_1:
+            type: http
+            assertTrue: css('h3') matches /The Black and Tan Trouser/
+            failure: I don't see the products' text being printed in `h3`!?
+        look_for_2:
+            type: http
+            assertTrue: css('h3') matches /South Shore Swim Shorts/
+            failure: I don't see the products' text being printed in `h3`!?
+
+basics_incorrectopentagsmc:
+    question: |
+        Which of the following is **incorrect** Twig code:
+    explanation: |
+        * A) is correct because whitespace - even line breaks - inside Twig code are ok
+        (and actually, have no effect!)
+
+        * B) is correct because everything between `{#` and `#}` are comments. So, even
+        though this *would* be bad Twig code, it's totally ignored.
+
+        * C) is *not* correct, because the `for` tag must be used with the say something
+        tag: `{% for product in my_products %}`.
+
+        * D) is correct because `{% set ... ` is one of the valid "tags" that can be used
+        with the "say something" tag. We haven't used it yet, but it's totally valid.
+    features:
+        multiple_choice:
+            choices:
+                a: |
+                    ```twig
+                    {{
+                    pageTitle     }}
+                    ```
+                b: |
+                    ```twig
+                    {# for nonExistentVariable in bad syntax here #}
+                    ```
+                c: |
+                    ```twig
+                    {{ for product in my_products }}
+                    ```
+                d: |
+                    ```twig
+                    {% set penguins = 'dapper' %}
+                    ```
+            correct: c
+
+# FunctionsFilters
+functionsfilters_datefiltercoding:
+    question: |
+        The penguins will want to get their flippers on these pants as
+        *soon* as possible. So, we're passing in a `saleStartsAt` date
+        variable that's set to *when* these fresh pants are available. Print
+        this using the `date` **filter** and the `F jS` format (e.g. January 5th)
+        inside the `h3` tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #   $context->addVariable('saleStartsAt', $this->getSaleStartsAt());
+    grading:
+        look_for_variable:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *saleStartsAt/
+            failure: I don't see the `saleStartsAt` variable. Ensure you added it into the template.
+        look_for_date_format:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /F jS/
+            failure: Make sure you use the `F jS` (e.g. January 5th) format for the date
+        # @TODO Don't know how we can test this:
+        # $htmlGrader->assertElementContains('h3', $this->getSaleStartsAt()->format('F jS'));
+
+functionsfilters_randomfunctionwithfiltercoding:
+    question: |
+        We don't really know what color we'll have for each item yet. But to
+        create a realistic demo, use the `random()` function to randomly
+        print either `black`, `white` or `green` for the color of each
+        product. Then, make sure this prints in uppercase, to really make
+        this page SHOUT.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #            $context->addVariable('products', array(
+    #                'The Black and Tan Trouser',
+    #                'Antarctic Snow Pants (in leopard seal print)',
+    #                'South Shore Swim Shorts',
+    #                'Starfish Halloween Costume'
+    #            ));
+    grading:
+        look_for_random:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *random(/
+            failure: Are you using the `random()` function?
+        look_for_upper:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /|upper *}}/
+            failure: Don't forget to use the `upper` filter to uppercase the colors!
+        look_for_black:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /black/
+            failure: Use `black` (lowercase) as one of the random colors
+        look_for_white:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /white/
+            failure: Use `white` (lowercase) as one of the random colors
+        look_for_green:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /green/
+            failure: Use `green` (lowercase) as one of the random colors
+        assert_color:
+            type: http
+            assertTrue: body() matches /BLACK|WHITE|GREEN/
+            failure: The output does not contain any of the colors BLACK, GREEN or WHITE - are you randomly selecting one of these and uppercasing them?
+
+functionsfilters_dumpfindvariablecoding:
+    question: |
+        All the AirPupnMeow PHP developers are at lunch. You know that
+        a new variable is being passed to the template that's set to
+        the description for the fall collection, but you don't know what
+        the variable is called! Use the `dump()` function to find out
+        what the variable is called (and don't worry that the challenge
+        is graded wrong at first). Then, print this variable inside
+        the `header` tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #   $context->addVariable(
+    #       'fallCollectionPromoDescription',
+    #       'Still wearing your summer swim shorts? Time to plan for the 9 month winter in style. Look no further than our fall collection at Penguins Pants Plus!'
+    #   );
+    grading:
+        look_for_random:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *fallCollectionPromoDescription/
+            failure: I don't see you printing the unknown variable yet...
+        look_for_random:
+            type: http
+            assertTrue: body() matches /Still wearing your summer swim shorts/
+            failure: I don't see the text of `fallCollectionPromoDescription` variable being printed!?
+
+# ObjectsAndArrays
+objectsandarrays_printrandomarraykeycoding:
+    question: |
+        Penguins are known to be indecisive. To make things easier for them,
+        we're creating a random product selector. In the template, you have a
+        new `randomProductKey` variable, that's a number from 0 to 3 - matching
+        the indices on the `products` array. Use this new variable to print
+        the "random product" inside the `h2` tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #    $context->addVariable('products', array(
+    #        'The Black and Tan Trouser',
+    #        'Antarctic Snow Pants (in leopard seal print)',
+    #        'South Shore Swim Shorts',
+    #        'Starfish Halloween Costume'
+    #    ));
+    #    $context->addVariable('randomProductKey', rand(0, 3));
+    grading:
+        look_for_random_array_key:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /products\[randomProductKey\]/
+            failure: Use the `products[variableName]` syntax to get a variable key from the array.
+
+objectsandarrays_printproductobjectscoding:
+    question: |
+        The backend developers are getting really fancy and have changed the
+        products from simple strings to objects! Use the `dump()` function - or look
+        at the `PantsProduct` class - to check it out.
+
+        Fix the template and print out both the `name` and `price` of the product.
+        To be extra awesome, see if you can also print out the date each product will
+        be released.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        PantsProduct.php: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #    $context->requireFile('PantsProduct.php');
+    #    $context->addVariable('products', array(
+    #        new \PantsProduct('The Black and Tan Trouser', 50),
+    #        new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
+    #        new \PantsProduct('South Shore Swim Shorts', 49),
+    #        new \PantsProduct('Starfish Halloween Costume', 35)
+    #    ));
+    grading:
+        look_for_name:
+            type: http
+            assertTrue: body() matches /The Black and Tan Trouser/
+            failure: Are you printing the product names?
+        look_for_price:
+            type: http
+            assertTrue: body() matches /99/
+            failure: Are you printing the product prices?
+        look_for_name_property:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *product.name/
+            failure: You can just use `product.name` to print the name. Behind the scenes Twig calls the `getName()` function on `PantsProduct`.
+        look_for_price_property:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /{{ *product.price/
+            failure: You can just use `product.price` to print the price. Behind the scenes Twig calls the `getPrice()` function on `PantsProduct`.
+
+# LayoutTemplateInheritance
+layouttemplateinheritance_createlayoutremoveduplicationcoding:
+    question: |
+        The team hates duplication! But now we have two templates: one for the
+        main collection, and another for the fall collection: the whole HTML
+        layout is in both! Move the duplicated layout HTML into the new `layout.twig`
+        file. Remove the duplication from both `mainCollection.twig` and
+        `fallCollection.twig` and use template inheritance to keep things looking fly.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        mainCollection.twig: ~
+        layout.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_extends_1:
+            type: php
+            assertTrue: input('fallCollection.twig') matches / extends +('|")layout.twig('|") *%}/
+            failure: The `fallCollection.twig` template needs to *extend* `layout.twig`
+        look_for_extends_2:
+            type: php
+            assertTrue: input('mainCollection.twig') matches / extends +('|")layout.twig('|") *%}/
+            failure: The `mainCollection.twig` template needs to "extend" `layout.twig`
+        look_for_opening_html:
+            type: php
+            assertTrue: input('layout.twig') matches /<html/
+            failure: I don't see opening `html` tag. Put the entire HTML layout into `layout.twig` template.
+        look_for_closing_html:
+            type: php
+            assertTrue: input('layout.twig') matches /</html>/
+            failure: I don't see closing `html` tag. Put the entire HTML layout into `layout.twig` template
+        look_for_header:
+            type: php
+            assertTrue: input('layout.twig') matches /<header/
+            failure: The `header` tag belongs in `layout.twig` too, since it's repeated on both pages
+        look_for_layout:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /<html/
+            failure: You no longer need the HTML layout (e.g. the `html` tag) inside of `fallCollection.twig` template
+        look_for_text:
+            type: http
+            assertTrue: body() matches /The fall products are coming soon!/
+            failure: I don't see the *The fall products are coming soon!* text being printed!?
+
+layouttemplateinheritance_fixextendserrorcoding:
+    question: |
+        Oh no! The intern did their best, but left this template with a big error!
+        They're back partying at university, so you need to find the mistake and
+        get this template working again.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        layout.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_text:
+            type: http
+            assertTrue: body() matches /The fall products are coming soon!/
+            failure: I don't see the *"The fall products are coming soon!"* text being printed!?
+
+layouttemplateinheritance_addblockandoverridecoding:
+    question: |
+        Every page on the site has our tag line at the bottom:
+        `You're hip, you're cool, you're a penguin!`. But on the fall collection page,
+        you need to override that to say: `Winter is coming! Get your pants!`.
+
+        Update `layout.twig` so that we can override this phrase. Then actually override it in
+        `fallCollection.twig`. Just make sure that `You're hip, you're cool, you're
+        a penguin!` is still the default tag line, for all the other templates that
+        *don't* override it.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        layout.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_text_1:
+            type: http
+            assertTrue: body() matches /Winter is coming! Get your pants!/
+            failure: I don't see the *Winter is coming! Get your pants!* text being printed!?
+        look_for_footer_1:
+            type: http
+            assertTrue: css('footer') matches /Winter is coming! Get your pants!/
+            failure: It looks like the `footer` HTML tag is gone. Print the text inside of this tag.
+        look_for_footer_2:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /<footer/
+            failure: You don't need to have the `footer` tag inside of `fallCollection.twig`. Instead, only put this `layout.twig`, and make your block only override the contents *inside* of it
+        look_for_text_2:
+            type: php
+            assertTrue: input('layout.twig') matches /You're hip, you're cool, you're a penguin!/
+            failure: Oh no! The original caption - *"You're hip, you're cool, you're a penguin!"* will now be missing from every other template that does *not* override the block. Make this be the default footer content.
+
+# IncludingOtherTemplates
+includingothertemplates_useincludecoding:
+    question: |
+        More duplication!!?? It must have been the intern! Refactor the
+        "Featured Product" section by moving it into `_featuredProduct.twig` and
+        including this from both templates.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        mainCollection.twig: ~
+        _featuredProduct.twig: ~
+        layout.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_text:
+            type: http
+            assertTrue: body() matches /pin-striped full suit/
+            failure: I don't see the *pin-striped full suit* text being printed!?
+        look_for_include_1:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /include/
+            failure: I don't see you including other template!?
+        look_for_text_1:
+            type: php
+            assertTrue: input('_featuredProduct.twig') matches /pin-striped full suit/
+            failure: I don't see the *pin-striped full suit* text in the `_featuredProduct.twig` template!?
+        look_for_text_2:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /pin-striped full suit/
+            failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `fallCollection.twig`
+        look_for_include_2:
+            type: php
+            assertTrue: input('mainCollection.twig') matches /include/
+            failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `fallCollection.twig`
+
+includingothertemplates_includeandvariablesmc:
+    question: |
+        Check out the following code:
+
+        ```twig
+        {# source for homepage.twig #}
+
+        {{ include('_otherTemplate.twig', {'color': 'blue'}) }}
+        ```
+
+        ```twig
+        {# source for _otherTemplate.twig #}
+
+        {{ include('_thirdTemplate.twig', {
+            'color': 'red',
+            'number': 5
+        }) }}
+        ```
+
+        ```twig
+        {# source for _thirdTemplate.twig #}
+
+        {% set number = 10 %}
+
+        <h4>
+            {{ color|default('green') }},
+            {{ number|default(25) }},
+            {{ name|default('Leanna') }},
+            {{ food|default('tomato') }}
+        </h4>
+        ```
+
+        Now, suppose that `homepage.twig` is rendered and passed a `food` variable
+        set to `pizza`. What will be printed inside the `h4` tag?
+    explanation: |
+        Look at each variable, one at a time:
+
+        * `color`: This is passed from `homepage.twig` to `_otherTemplate.twig` as `blue`.
+        But then, `_otherTemplate.twig` passes a new value to `_thirdTemplate.twig`: `red`.
+        The `default` filter doesn't do anything, since this value *is* set.
+
+        * `number`: At first, `number` is set to `5` inside `_thirdTemplate.twig`, but
+        the `{% set` call overrides this and sets it to 10.
+
+        * `name`: The `name` variable is *never* set. The `default` filter comes to the
+        rescue and prints out `Leanna` as a default value.
+
+        * `food`: The `food` variable is originally set to `pizza` and never overridden.
+        Even though it's not explicitly passed in the `include` calls, all variables in
+        one template are passed into the included template. So, when we're eventually
+        in `_thirdTemplate.twig`, `food` is still set to `pizza`.
+    features:
+        multiple_choice:
+            choices:
+                a: green, 10, Leanna, tomato
+                b: blue, 5, Leanna, pizza
+                c: red, 10, Leanna, tomato
+                d: red, 10, Leanna, pizza
+            correct: d
+
+# TestsIfStatements
+testsifstatements_testifoddcoding:
+    question: |
+        Penguins are very superstitious about odd numbers. If we have an odd number
+        of total pants available, print a message that says:
+        `We promise, 1 more pair of pants is coming very soon!` to calm their fears.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    #   @TODO Add context:
+    #     $context->requireFile('PantsProduct.php');
+    #     $context->addVariable('products', array(
+    #         new \PantsProduct('The Black and Tan Trouser', 50),
+    #         new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
+    #         new \PantsProduct('South Shore Swim Shorts', 49),
+    #     ));
+    grading:
+        look_for_text:
+            type: http
+            assertTrue: body() matches /We promise, 1 more pair of pants is coming very soon!/
+            failure: I don't see the *"We promise, 1 more pair of pants is coming very soon!"* text being printed!?
+        look_for_length:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /\| *length/
+            failure: Use the `length` filter to count the products.
+        look_for_is_odd:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /is odd/
+            failure: Use the `is odd` to see if there are an odd number of products.
+
+testsifstatements_complextestandnotcoding:
+    question: |
+        When we show the featured product, sometimes we pass a `quantityRemaining` variable
+        to `_featuredProduct.twig`, but sometimes we don't. To make matters worse, remember that
+        Penguins hate odd numbers! Add an `if` statement so that the `featured-quantity`
+        element is printed *only* if `quantityRemaining`is defined **and** if it is *not*
+        an odd number.
+
+        **Hint**: No `quantityRemaining` variable is being passed to `fallCollection.twig`.
+        But you can test your logic by passing a `quantityRemaining` variable in your
+        `include()` function with different values.
+    step: ~
+    files:
+        _featuredProduct.twig: ~
+        fallCollection.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    grading:
+        look_for_is_defined:
+            type: php
+            assertTrue: input('_featuredProduct.twig') matches /is defined/
+            failure: Use the `defined` to see if `quantityRemaining` is defined
+        look_for_is_not_odd:
+            type: php
+            assertTrue: input('_featuredProduct.twig') matches /is not odd/
+            failure: 'Use `not odd` to make sure `quantityRemaining` is not an odd number. (Hint: you could also use `is even` in real life... but not to pass this challenge)'
+
+# ForLoopInlineIf
+forloopinlineif_validforloopvariablemc:
+    question: |
+        Which of the following is **not** a valid thing you can do with the `loop` variable?
+    explanation: |
+        Twig's documentation for the [for](http://twig.sensiolabs.org/doc/tags/for.html#the-loop-variable)
+        tag shows that all of these are valid, except for `loop.previous` - we made that
+        one up ;).
+    features:
+        multiple_choice:
+            choices:
+                a: |
+                    ```twig
+                    {% if loop.first %}
+                    ```
+                b: |
+                    ```twig
+                    {{ loop.previous }}
+                    ```
+                c: |
+                    ```twig
+                    {{ loop.index0 }}
+                    ```
+                d: |
+                    ```twig
+                    {% if loop.length > 5 %}
+                    ```
+            correct: b
+
+forloopinlineif_forelsecoding:
+    question: |
+        This template works well enough, but it could be easier! Leverage Twig's
+        for-else ability to remove the if statement at the bottom. We're passing
+        in an empty `products` array variable, so make sure that `No pants for you!`
+        still prints out since the inventory is empty.
+    step: ~
+    files:
+        fallCollection.twig: ~
+    features:
+        editor: ~
+        browser: ~
+    # @TODO Add context:
+    # $context->addVariable('products', array());
+    grading:
+        look_for_else:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /else/
+            failure: Use an `else` with your `for` tag.
+        look_for_text:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /No pants for you!/
+            failure: I don't see the *"No pants for you!"* text being printed!?
+        look_for_if:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /{% if/
+            failure: You don't need the `{% if` statement that checks for the products anymore!
+
+forloopinlineif_onelineifstatementcoding:
+    question: |
+        The intern added an if statement that either prints each product's
+        quantity or an "out of stock" message. It works great! But I can tell that
+        you like a challenge: see if you can write this all in one line, inside a
+        single `{{ ... }}` "say something" tag.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        PantsProduct.php:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    # @TODO Add context:
+    #        $context->requireFile('PantsProduct.php');
+    #        $context->addVariable('products', array(
+    #            new \PantsProduct('The Black and Tan Trouser', 50, 0),
+    #            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
+    #            new \PantsProduct('South Shore Swim Shorts', 49, 0),
+    #            new \PantsProduct('Starfish Halloween Costume', 35, 62)
+    #        ));
+    grading:
+        assert_text_1:
+            type: http
+            assertTrue: css('.stock-status') matches /Out of Stock/
+            failure: I see the *"The Black and Tan Trouser"* text being printed!?
+        assert_text_2:
+            type: http
+            assertTrue: css('.stock-status') matches /62/
+            failure: I see the *"The Black and Tan Trouser"* text being printed!?
+        assert_text:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /{% if/
+            failure: Remove the `{% if` statement and replace it with a single line that does the same thing.
+
+forloopinlineif_fortagconditionscoding:
+    question: |
+        Change of plan! Instead of printing "out of stock", management wants to completely
+        hide any products that aren't available. That's no problem, because you've just read
+        the documentation about the `for` tag and found out that you can add
+        [conditions](http://twig.sensiolabs.org/doc/tags/for.html#adding-a-condition)
+        that filter things when looping. Use this to only print products with a quantity greater
+        than zero.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        PantsProduct.php:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    # @TODO Add context:
+    #        $context->requireFile('PantsProduct.php');
+    #        $context->addVariable('products', array(
+    #            new \PantsProduct('The Black and Tan Trouser', 50, 0),
+    #            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
+    #            new \PantsProduct('South Shore Swim Shorts', 49, 0),
+    #            new \PantsProduct('Starfish Halloween Costume', 35, 62)
+    #        ));
+    grading:
+        look_for_text_1:
+            type: http
+            assertFalse: body() matches /The Black and Tan Trouser/
+            failure: I see the *"The Black and Tan Trouser"* text being printed!?
+        look_for_text_2:
+            type: http
+            assertTrue: body() matches /Starfish Halloween Costume/
+            failure: I don't see the *"Starfish Halloween Costume"* text being printed!?
+        look_for_if:
+            type: php
+            assertFalse: input('fallCollection.twig') matches /{% if/
+            failure: 'Hide the products with zero quantity, but without a new `{% if ...` statement: add an `if` part to the `{% for ...` tag.'
+
+# MistakesMacros
+mistakesmacros_includemistakecoding:
+    question: |
+        You've been coding like a machine until someone brought birthday cake
+        <i class="fa fa-birthday-cake"></i> to the office and you quit working
+        immediately! Now, in a slight sugar-coma, you're ready to keep working.
+        Start by fixing the error in this template:
+    step: ~
+    files:
+        aboutPenguins.twig: ~
+        _cannotFly.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    grading:
+        look_for_text:
+            type: http
+            assertTrue: 'body() matches /due to: little wings/'
+            failure: 'I see the *"due to: little wings"* text being printed!?'
+
+mistakesmacros_blankvariableerrormc:
+    question: |
+        Check out the following code:
+
+        ```twig
+        {# homepage.twig #}
+
+        <h1>{{ product.name }}</h1>
+        ```
+
+        If you see the following error, what's the likely cause?:
+
+        > Item "name" for "" does not exist in `homepage.twig`
+    explanation: |
+        This is a classic error that means that `product` is empty - like `null`, or an empty
+        string - instead of it being an object or an array (which is what we were expecting).
+        If `B` or `C` were true, you would see a different error. And `D` is completely wrong:
+        you can say `product.name` whether `product` is an object or an associative array
+        that has a `name` key.
+    features:
+        multiple_choice:
+            choices:
+                a: The `product` variable might be null, instead of an object
+                b: There might not be a `name` property on the product object
+                c: There might not be a `getName()` function on the product object
+                d: The `product` variable might be an array, but we're treating it like an object
+            correct: a
+
+mistakesmacros_sizechartmacrocoding:
+    question: |
+        Penguins are friendly, relaxed creatures. And they hate it when their pants
+        fit too tight. To help them out, we've included a sizing chart in `mainCollection.twig`.
+        We want to re-use that sizing chart on `fallCollection.twig`, but not show the "XL" column,
+        because the fall collection only has the sizes S, M and L.
+
+        Refactor the sizing chart into a macro called `printSizingChart`, put it in `macros.twig`,
+        and make sure it has a `showXLColumn` argument that you use to only show XL when we want to.
+        Use this macro in both collection templates, making sure not to include the XL column for
+        `fallCollection.twig`.
+    step: ~
+    files:
+        fallCollection.twig: ~
+        mainCollection.twig: ~
+        macros.twig: ~
+        layout.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    # @TODO Add context:
+    # $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_macro_definition:
+            type: php
+            assertTrue: input('macros.twig') matches /printSizingChart(/
+            failure: I don't see the `printSizingChart()` macro in `macros.twig`
+        look_for_macro_argument:
+            type: php
+            assertTrue: input('macros.twig') matches /showXLColumn/
+            failure: I don't see the `showXLColumn` argument for the `printSizingChart()` macro. Add this and use it to hide/show the XL column.
+        look_for_macro_usage_1:
+            type: php
+            assertTrue: input('fallCollection.twig') matches /printSizingChart(/
+            failure: You'll need to use the `printSizingChart()` macro inside `fallCollection.twig`
+        look_for_macro_usage_2:
+            type: php
+            assertTrue: input('mainCollection.twig') matches /printSizingChart(/
+            failure: You'll need to use the `printSizingChart` macro inside `mainCollection.twig`
+        look_for_import:
+            type: php
+            assertTrue: input('mainCollection.twig') matches /import/
+            failure: Don't forget to `import` `macros.twig` in `mainCollection.twig`.
+        look_for_text_1:
+            type: http
+            assertTrue: body() matches /5-15 lbs/
+            failure: I don't see the text of *"5-15 lbs"* text being printed!?
+        look_for_text_2:
+            type: http
+            assertTrue: body() matches /61-85 lbs/
+            failure: I don't see the text of *"61-85 lbs"* text being printed!?
+
+# ExtraCreditEscaping
+extracreditescaping_sidebarblockcoding:
+    question: |
+        Most pages override the sidebar block, but not `fallCollection.twig`!
+        Unfortunately, even though the sidebar is empty, the `<div class="col-xs-3">`
+        element in `layout.twig` still exists, so the content is pushed to the right.
+        Let's fix this:
+
+        A) Add some logic so the extra `<div class="col-xs-3">` (in `layout.twig`) and its
+        closing tag are only rendered if the sidebar block has content.
+
+        B) Change the `col-xs-9` to `col-xs-12` if the sidebar block has no content,
+        so it takes up the full-width of the page.
+    step: ~
+    files:
+        layout.twig: ~
+        fallCollection.twig:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    # @TODO Add context:
+    # $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
+    grading:
+        look_for_block:
+            type: php
+            assertTrue: input('layout.twig') matches /block(/
+            failure: Use the `block('sidebar') function to determine if the child template has any sidebar content.
+        look_for_class_1:
+            type: http
+            assertFalse: body() matches /col-xs-3/
+            failure: Make sure the `.col-xs-3` element does not print at all, since there is no sidebar on this page.
+        look_for_class_2:
+            type: http
+            assertTrue: body() matches /col-xs-12/
+            failure: Change the main content div's class to be `col-xs-9` when there is no sidebar content.
+
+extracreditescaping_badtwigcodemc:
+    question: Which of the following is bad Twig code:
+    explanation: |
+        * Answer (A) uses the `~` to concatenate a string and a variable, totally legal!
+
+        * Answer (B) adds a `-` on the opening and closing `{{` in order to remove any
+        extra whitespace before or after this tag.
+
+        * But (C) is totally made up - `{~` is not valid syntax.
+    features:
+        multiple_choice:
+            choices:
+                a: |
+                    ```twig
+                    {{ ('Hello '~name)|upper }}
+                    ```
+                b: |
+                    ```twig
+                    {{- 'Hello'|upper -}}
+                    ```
+                c: |
+                    ```twig
+                    {~ name|upper ~}
+                    ```
+            correct: c
+
+extracreditescaping_wysiwygfiltercoding:
+    question: |
+        In our admin section, the content penguins are using a WYSIWYG editor to edit the
+        pant descriptions.  But immediately, ugly HTML tags started printing out, instead
+        of being rendered! Add a filter to save the day.
+    step: ~
+    files:
+        singleItem.twig: ~
+        PantsProduct.php:
+            read_only: true
+    features:
+        editor: ~
+        browser: ~
+    # @TODO Add context:
+    #          $context->requireFile('PantsProduct.php');
+    #          $product = new \PantsProduct('The Black and Tan Trouser', 50);
+    #          $product->setDescription('The <strong>Hottest</strong> pants this fall!');
+    #          $context->addVariable('product', $product);
+    grading:
+        look_for_tag:
+            type: http
+            assertTrue: body() matches /<strong>/
+            failure: The `strong` tag still looks escaped - how can you make it raw?
+        look_for_raw:
+            type: php
+            assertTrue: input('singleItem.twig') matches /\| *raw/
+            failure: Use the `raw` filter to *not* escape HTML tags.
