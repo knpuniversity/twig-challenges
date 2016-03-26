@@ -12,8 +12,8 @@ basics_printvariablecoding:
     features:
         editor: ~
         browser:
-            default_uri: /render.php
-            visible: false
+            default_uri: render.php
+            show_address_bar: false
     grading:
         look_for_variable:
             type: php
