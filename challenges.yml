@@ -3,26 +3,27 @@ basics_printvariablecoding:
     question: |
         At Penguins Pants Plus, the tailors have been working really hard
         on the fall collection, and we're helping them out by building
-        the template for this page! A `collectionTitle` variable has been
-        passed into the template: print it inside the `<h1>` tag!
-    step: ~
+        the template for this page!
+    question_steps:
+        - "A `collectionTitle` variable has been passed into the template: print it inside the `<h1>` tag!"
+    step: basic-print-variable-coding
     files:
         fallCollection.twig: ~
     features:
         editor: ~
-        browser: ~
-    # @TODO Add context:
-    # $context->addVariable('collectionTitle', 'Fall in love and look your best in the snow.');
+        browser:
+            default_uri: /render.php
+            visible: false
     grading:
         look_for_variable:
             type: php
             # @TODO Should we move input() function from PHP expression provider to the HTTP one?
             # It's a bit awkward when I use it for Twig files
-            assertTrue: input('fallCollection.twig') matches /{{ *collectionTitle *}}/
-            failure: I don't see the `collectionTitle` variable. Ensure you added it into the template.
+            assertTrue: input('fallCollection.twig') matches '\/{{ *collectionTitle *}}\/'
+            failure: I don't see the `collectionTitle` variable. Make sure you print it in the template.
         look_for_text:
             type: http
-            assertTrue: css('h1') matches /Fall in love and look your best in the snow./
+            assertTrue: css('h1').first().text() matches '/Fall in love and look your best in the snow/'
             failure: I don't see the text of `collectionTitle` variable being printed in `h1`!?
 
 basics_forloopcoding:
