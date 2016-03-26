@@ -1,0 +1,9 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index 4a6ec60..d598dd7 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -1,3 +1,3 @@
+ <h1>
+-    <!-- print the variable here -->
++    {{ collectionTitle }}
+ </h1>

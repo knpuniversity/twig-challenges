@@ -1,0 +1,20 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "basic-print-variable-coding",
+            "name": "Basic: Print Variable Coding",
+            "description": null
+        },
+        {
+            "id": "basic-print-variable-coding-solution",
+            "name": "Basic: Print Variable Coding [Solution]",
+            "description": null
+        }
+    ],
+    "sha": "3e2e4653469647c68a0355292301778691f2a1ab"
+}
