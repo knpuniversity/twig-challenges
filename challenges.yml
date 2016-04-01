@@ -127,12 +127,12 @@ functionsfilters_datefiltercoding:
 
 functionsfilters_randomfunctionwithfiltercoding:
     question: |
-        We don't really know what color we'll have for each item yet. But to
-        create a realistic demo, use the `random()` function to randomly
-        print either `black`, `white` or `green` for the color of each
-        product. Then, make sure this prints in uppercase, to really make
-        this page SHOUT.
-    step: ~
+        We don't really know what color we'll have for each item yet. But we
+        want to create a realistic demp that shows a variety of colors!
+    question_steps:
+        - Use the `random` function to print either `black`, `white` or `green` inside the `span.badge` element.
+        - Add the `upper` filter to really make this page SHOUT!
+    step: functions-filters-random-fxn-filter
     files:
         fallCollection.twig: ~
     features:
@@ -140,13 +140,6 @@ functionsfilters_randomfunctionwithfiltercoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #            $context->addVariable('products', array(
-    #                'The Black and Tan Trouser',
-    #                'Antarctic Snow Pants (in leopard seal print)',
-    #                'South Shore Swim Shorts',
-    #                'Starfish Halloween Costume'
-    #            ));
     grading:
         look_for_random:
             type: php
@@ -155,7 +148,7 @@ functionsfilters_randomfunctionwithfiltercoding:
         look_for_upper:
             type: php
             assertTrue: input('fallCollection.twig') matches '/|upper *}}/'
-            failure: Don't forget to use the `upper` filter to uppercase the colors!
+            failure: Use the `upper` filter to uppercase the colors!
         look_for_black:
             type: php
             assertTrue: input('fallCollection.twig') matches '/black/'
@@ -171,18 +164,20 @@ functionsfilters_randomfunctionwithfiltercoding:
         assert_color:
             type: http
             assertTrue: body() matches '/BLACK|WHITE|GREEN/'
-            failure: The output does not contain any of the colors BLACK, GREEN or WHITE - are you randomly selecting one of these and uppercasing them?
+            failure: I don't see BLACK, GREEN or WHITE on the page: are you randomly selecting one of these and uppercasing them?
 
 functionsfilters_dumpfindvariablecoding:
     question: |
         All the AirPupnMeow PHP developers are at lunch. You know that
         a new variable is being passed to the template that's set to
-        the description for the fall collection, but you don't know what
-        the variable is called! Use the `dump()` function to find out
-        what the variable is called (and don't worry that the challenge
-        is graded wrong at first). Then, print this variable inside
-        the `header` tag.
-    step: ~
+        the *description* for the fall collection... but you don't know what
+        the variable is called! Do some detective work to find out!
+    question_steps:
+        - |
+            Use the `dump()` function to print out what the new variable is called
+            (and don't worry that the challenge will be graded wrong at first!).
+        - Then, print this variable inside the `<small>` tag.
+    step: functions-filters-dump-find-variable
     files:
         fallCollection.twig: ~
     features:
@@ -190,11 +185,6 @@ functionsfilters_dumpfindvariablecoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #   $context->addVariable(
-    #       'fallCollectionPromoDescription',
-    #       'Still wearing your summer swim shorts? Time to plan for the 9 month winter in style. Look no further than our fall collection at Penguins Pants Plus!'
-    #   );
     grading:
         look_for_random:
             type: php
@@ -210,10 +200,11 @@ objectsandarrays_printrandomarraykeycoding:
     question: |
         Penguins are known to be indecisive. To make things easier for them,
         we're creating a random product selector. In the template, you have a
-        new `randomProductKey` variable, that's a number from 0 to 3 - matching
-        the indices on the `products` array. Use this new variable to print
-        the "random product" inside the `h2` tag.
-    step: ~
+        new `randomProductKey` variable: it's a number from 0 to 3 - matching
+        the indices on the `products` array.
+    question_steps:
+        - Use the new `randomProductKey` variable and the `products` array to print the "random product" inside the `h3` tag.
+    step: objects-arrays-print-random-array-key
     files:
         fallCollection.twig: ~
     features:
@@ -221,14 +212,6 @@ objectsandarrays_printrandomarraykeycoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #    $context->addVariable('products', array(
-    #        'The Black and Tan Trouser',
-    #        'Antarctic Snow Pants (in leopard seal print)',
-    #        'South Shore Swim Shorts',
-    #        'Starfish Halloween Costume'
-    #    ));
-    #    $context->addVariable('randomProductKey', rand(0, 3));
     grading:
         look_for_random_array_key:
             type: php
@@ -238,29 +221,21 @@ objectsandarrays_printrandomarraykeycoding:
 objectsandarrays_printproductobjectscoding:
     question: |
         The backend developers are getting really fancy and have changed the
-        products from simple strings to objects! Use the `dump()` function - or look
+        products from simple strings to objects! AMAZING! Use the `dump()` function - or look
         at the `PantsProduct` class - to check it out.
-
-        Fix the template and print out both the `name` and `price` of the product.
-        To be extra awesome, see if you can also print out the date each product will
-        be released.
-    step: ~
+    question_steps:
+        - Fix the template and print out both the `name` and `price` of the product.
+        - To be extra awesome, see if you can also print out the date each product will be released.
+    step: objects-arrays-print-product-objects
     files:
         fallCollection.twig: ~
-        PantsProduct.php: ~
+        PantsProduct.php:
+            read_only: true
     features:
         editor: ~
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #    $context->requireFile('PantsProduct.php');
-    #    $context->addVariable('products', array(
-    #        new \PantsProduct('The Black and Tan Trouser', 50),
-    #        new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
-    #        new \PantsProduct('South Shore Swim Shorts', 49),
-    #        new \PantsProduct('Starfish Halloween Costume', 35)
-    #    ));
     grading:
         look_for_name:
             type: http
@@ -284,10 +259,11 @@ layouttemplateinheritance_createlayoutremoveduplicationcoding:
     question: |
         The team hates duplication! But now we have two templates: one for the
         main collection, and another for the fall collection: the whole HTML
-        layout is in both! Move the duplicated layout HTML into the new `layout.twig`
-        file. Remove the duplication from both `mainCollection.twig` and
-        `fallCollection.twig` and use template inheritance to keep things looking fly.
-    step: ~
+        layout is in both!
+    question_steps:
+        - Move the duplicated layout HTML into the new `layout.twig` file.
+        - Remove the duplication from both `mainCollection.twig` and `fallCollection.twig` and use template inheritance to keep things looking fly.
+    step: inheritance-create-layout-remove-dup
     files:
         fallCollection.twig: ~
         mainCollection.twig: ~
@@ -297,8 +273,6 @@ layouttemplateinheritance_createlayoutremoveduplicationcoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_extends_1:
             type: php
@@ -327,14 +301,16 @@ layouttemplateinheritance_createlayoutremoveduplicationcoding:
         look_for_text:
             type: http
             assertTrue: body() matches '/The fall products are coming soon!/'
-            failure: I don't see the *The fall products are coming soon!* text being printed!?
+            failure: I don't see the *The fall products are coming soon!* text being printed anymore!?
 
 layouttemplateinheritance_fixextendserrorcoding:
     question: |
         Oh no! The intern did their best, but left this template with a big error!
-        They're back partying at university, so you need to find the mistake and
-        get this template working again.
-    step: ~
+        They're back partying at university, so you need to fix it!
+    question_steps:
+        - Submit the template to see the current error.
+        - Fix the error in the template so that things work again!
+    step: inheritance-fix-extends-error
     files:
         fallCollection.twig: ~
         layout.twig: ~
@@ -343,8 +319,6 @@ layouttemplateinheritance_fixextendserrorcoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_text:
             type: http
@@ -356,12 +330,12 @@ layouttemplateinheritance_addblockandoverridecoding:
         Every page on the site has our tag line at the bottom:
         `You're hip, you're cool, you're a penguin!`. But on the fall collection page,
         you need to override that to say: `Winter is coming! Get your pants!`.
-
-        Update `layout.twig` so that we can override this phrase. Then actually override it in
-        `fallCollection.twig`. Just make sure that `You're hip, you're cool, you're
-        a penguin!` is still the default tag line, for all the other templates that
-        *don't* override it.
-    step: ~
+    question_steps:
+        - Update `layout.twig` so that we can override the footer text.
+        - |
+            Then, actually override this text in `fallCollection.twig` to say
+            `Winter is coming! Get your pants!`.
+    step: inheritance-add-block-override
     files:
         fallCollection.twig: ~
         layout.twig: ~
@@ -370,8 +344,6 @@ layouttemplateinheritance_addblockandoverridecoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_text_1:
             type: http
@@ -393,10 +365,11 @@ layouttemplateinheritance_addblockandoverridecoding:
 # IncludingOtherTemplates
 includingothertemplates_useincludecoding:
     question: |
-        More duplication!!?? It must have been the intern! Refactor the
-        "Featured Product" section by moving it into `_featuredProduct.twig` and
-        including this from both templates.
-    step: ~
+        More duplication!!?? It must have been the intern!
+    question_steps:
+        - Refactor the "Featured Product" section by moving it into `_featuredProduct.twig`.
+        - Then, include this from both templates.
+    step: including-use-include
     files:
         fallCollection.twig: ~
         mainCollection.twig: ~
@@ -408,8 +381,6 @@ includingothertemplates_useincludecoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #    $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_text:
             type: http
@@ -495,10 +466,14 @@ includingothertemplates_includeandvariablesmc:
 # TestsIfStatements
 testsifstatements_testifoddcoding:
     question: |
-        Penguins are very superstitious about odd numbers. If we have an odd number
-        of total pants available, print a message that says:
-        `We promise, 1 more pair of pants is coming very soon!` to calm their fears.
-    step: ~
+        Penguins are very superstitious about odd numbers!
+    question_steps:
+        - |
+            If we have an odd number of total pants available, print
+            a message that says:
+            `We promise, 1 more pair of pants is coming very soon!`
+            to calm their fears.
+    step: tests-if-test-if-odd
     files:
         fallCollection.twig: ~
     features:
@@ -506,13 +481,6 @@ testsifstatements_testifoddcoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #     $context->requireFile('PantsProduct.php');
-    #     $context->addVariable('products', array(
-    #         new \PantsProduct('The Black and Tan Trouser', 50),
-    #         new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
-    #         new \PantsProduct('South Shore Swim Shorts', 49),
-    #     ));
     grading:
         look_for_text:
             type: http
@@ -531,18 +499,22 @@ testsifstatements_complextestandnotcoding:
     question: |
         When we show the featured product, sometimes we pass a `quantityRemaining` variable
         to `_featuredProduct.twig`, but sometimes we don't. To make matters worse, remember that
-        Penguins hate odd numbers! Add an `if` statement so that the `featured-quantity`
-        element is printed *only* if `quantityRemaining`is defined **and** if it is *not*
-        an odd number.
+        Penguins hate odd numbers! We need to use some complex `if` statements to
+        make this all work.
 
-        **Hint**: No `quantityRemaining` variable is being passed to `fallCollection.twig`.
-        But you can test your logic by passing a `quantityRemaining` variable in your
-        `include()` function with different values.
-    step: ~
+    question_steps:
+        - |
+            Add an `if` statement so that the `featured-quantity` element is printed
+            *only* if the `quantityRemaining` variable is defined **and** if it is *not*
+            an odd number.
+        - |
+            **Hint**: No `quantityRemaining` variable is being passed to `fallCollection.twig`.
+            But you *could* test your logic by passing a `quantityRemaining` variable in your
+            `include()` function with different values.
+    step: tests-if-complex-test-and-not
     files:
         _featuredProduct.twig: ~
-        fallCollection.twig:
-            read_only: true
+        fallCollection.twig: ~
     features:
         editor: ~
         browser:
@@ -589,11 +561,15 @@ forloopinlineif_validforloopvariablemc:
 
 forloopinlineif_forelsecoding:
     question: |
-        This template works well enough, but it could be easier! Leverage Twig's
-        for-else ability to remove the if statement at the bottom. We're passing
-        in an empty `products` array variable, so make sure that `No pants for you!`
-        still prints out since the inventory is empty.
-    step: ~
+        This template works well enough, but it could be easier!
+    question_steps:
+     - |
+        Leverage Twig's for-else ability to remove the if statement at the bottom
+        (Hint: you'll need to put the "No pants for you!" message in an `<li>` tag).
+     - |
+        We're passing in an empty `products` array variable, so make sure that
+        `No pants for you!` still prints out since the inventory is empty.
+    step: for-inline-if-for-else
     files:
         fallCollection.twig: ~
     features:
@@ -601,8 +577,6 @@ forloopinlineif_forelsecoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    # @TODO Add context:
-    # $context->addVariable('products', array());
     grading:
         look_for_else:
             type: php
