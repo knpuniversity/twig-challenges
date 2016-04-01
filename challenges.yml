@@ -68,7 +68,7 @@ basics_incorrectopentagsmc:
         * C) is *not* correct, because the `for` tag must be used with the say something
         tag: `{% for product in my_products %}`.
 
-        * D) is correct because `{% set ... ` is one of the valid "tags" that can be used
+        * D) is correct because `{% set ...` is one of the valid "tags" that can be used
         with the "say something" tag. We haven't used it yet, but it's totally valid.
     features:
         multiple_choice:
@@ -97,10 +97,12 @@ functionsfilters_datefiltercoding:
     question: |
         The penguins will want to get their flippers on these pants as
         *soon* as possible. So, we're passing in a `saleStartsAt` date
-        variable that's set to *when* these fresh pants are available. Print
-        this using the `date` **filter** and the `F jS` format (e.g. January 5th)
-        inside the `h3` tag.
-    step: ~
+        variable that's set to *when* these fresh pants are available.
+    question_steps:
+        - |
+            Print the new `saleStartsAt` variable by using the `date` **filter**
+            and the format `F jS` (e.g. January 5th) inside the `h2` tag.
+    step: functions-filters-date-filter
     files:
         fallCollection.twig: ~
     features:
@@ -108,19 +110,17 @@ functionsfilters_datefiltercoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    #   @TODO Add context:
-    #   $context->addVariable('saleStartsAt', $this->getSaleStartsAt());
     grading:
         look_for_variable:
             type: php
             assertTrue: input('fallCollection.twig') matches '/{{ *saleStartsAt/'
-            failure: I don't see the `saleStartsAt` variable. Ensure you added it into the template.
+            failure: I don't see the `saleStartsAt` variable. Print this variable in the template.
         look_for_date_format:
             type: php
             assertTrue: input('fallCollection.twig') matches '/F jS/'
-            failure: Make sure you use the `F jS` (e.g. January 5th) format for the date
+            failure: Make sure you use the `F jS` (e.g. January 5th) format for the date.
         # @TODO Don't know how we can test this:
-        # $htmlGrader->assertElementContains('h3', $this->getSaleStartsAt()->format('F jS'));
+        # $htmlGrader->assertElementContains('h2', $this->getSaleStartsAt()->format('F jS'));
 
 functionsfilters_randomfunctionwithfiltercoding:
     question: |
