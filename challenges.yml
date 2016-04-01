@@ -595,9 +595,10 @@ forloopinlineif_onelineifstatementcoding:
     question: |
         The intern added an if statement that either prints each product's
         quantity or an "out of stock" message. It works great! But I can tell that
-        you like a challenge: see if you can write this all in one line, inside a
-        single `{{ ... }}` "say something" tag.
-    step: ~
+        you're looking for a challenge...
+    question_steps:
+        - Use a single `{{ ... }}` "say-something" and an inline-if statement to convert this `if` statement into a single line.
+    step: for-inline-if-one-line-if-stmt
     files:
         fallCollection.twig: ~
         PantsProduct.php:
@@ -607,14 +608,6 @@ forloopinlineif_onelineifstatementcoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    # @TODO Add context:
-    #        $context->requireFile('PantsProduct.php');
-    #        $context->addVariable('products', array(
-    #            new \PantsProduct('The Black and Tan Trouser', 50, 0),
-    #            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
-    #            new \PantsProduct('South Shore Swim Shorts', 49, 0),
-    #            new \PantsProduct('Starfish Halloween Costume', 35, 62)
-    #        ));
     grading:
         assert_text_1:
             type: http
@@ -635,26 +628,17 @@ forloopinlineif_fortagconditionscoding:
         hide any products that aren't available. That's no problem, because you've just read
         the documentation about the `for` tag and found out that you can add
         [conditions](http://twig.sensiolabs.org/doc/tags/for.html#adding-a-condition)
-        that filter things when looping. Use this to only print products with a quantity greater
-        than zero.
-    step: ~
+        that filter things when looping.
+    question_steps:
+        - Update the `for` tag so that any products with *zero* quantity are not rendered at all!
+    step: for-inline-if-for-tag-conditions
     files:
         fallCollection.twig: ~
-        PantsProduct.php:
-            read_only: true
     features:
         editor: ~
         browser:
             default_uri: render.php
             show_address_bar: false
-    # @TODO Add context:
-    #        $context->requireFile('PantsProduct.php');
-    #        $context->addVariable('products', array(
-    #            new \PantsProduct('The Black and Tan Trouser', 50, 0),
-    #            new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99, 10),
-    #            new \PantsProduct('South Shore Swim Shorts', 49, 0),
-    #            new \PantsProduct('Starfish Halloween Costume', 35, 62)
-    #        ));
     grading:
         look_for_text_1:
             type: http
@@ -675,8 +659,10 @@ mistakesmacros_includemistakecoding:
         You've been coding like a machine until someone brought birthday cake
         <i class="fa fa-birthday-cake"></i> to the office and you quit working
         immediately! Now, in a slight sugar-coma, you're ready to keep working.
-        Start by fixing the error in this template:
-    step: ~
+    question_steps:
+        - There's an error in your template! Submit to see what it is.
+        - Read the error and update your template to fix things!
+    step: mistakes-macros-include-mistake
     files:
         aboutPenguins.twig: ~
         _cannotFly.twig:
@@ -722,16 +708,15 @@ mistakesmacros_blankvariableerrormc:
 
 mistakesmacros_sizechartmacrocoding:
     question: |
-        Penguins are friendly, relaxed creatures. And they hate it when their pants
+        Penguins are friendly, relaxed creatures. So they hate it when their pants
         fit too tight. To help them out, we've included a sizing chart in `mainCollection.twig`.
         We want to re-use that sizing chart on `fallCollection.twig`, but not show the "XL" column,
         because the fall collection only has the sizes S, M and L.
-
-        Refactor the sizing chart into a macro called `printSizingChart`, put it in `macros.twig`,
-        and make sure it has a `showXLColumn` argument that you use to only show XL when we want to.
-        Use this macro in both collection templates, making sure not to include the XL column for
-        `fallCollection.twig`.
-    step: ~
+    question_steps:
+        - Refactor the sizing chart into a macro called `printSizingChart`. Put it in `macros.twig`.
+        - Make sure the macro has a `showXLColumn` argument. Use it to only show XL when we want to.
+        - 'Use this macro in both collection templates: make sure not to include the XL column for `fallCollection.twig`.'
+    step: mistakes-macros-size-chart-macro
     files:
         fallCollection.twig: ~
         mainCollection.twig: ~
@@ -743,8 +728,6 @@ mistakesmacros_sizechartmacrocoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    # @TODO Add context:
-    # $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_macro_definition:
             type: php
@@ -781,14 +764,15 @@ extracreditescaping_sidebarblockcoding:
         Most pages override the sidebar block, but not `fallCollection.twig`!
         Unfortunately, even though the sidebar is empty, the `<div class="col-xs-3">`
         element in `layout.twig` still exists, so the content is pushed to the right.
-        Let's fix this:
-
-        A) Add some logic so the extra `<div class="col-xs-3">` (in `layout.twig`) and its
-        closing tag are only rendered if the sidebar block has content.
-
-        B) Change the `col-xs-9` to `col-xs-12` if the sidebar block has no content,
-        so it takes up the full-width of the page.
-    step: ~
+        Let's fix this!
+    question_steps:
+        - |
+            Add some logic so the extra `<div class="col-xs-3">` (in `layout.twig`) and its
+            closing tag are only rendered if the sidebar block has content.
+        - |
+            Change the `col-xs-9` to `col-xs-12` if the sidebar block has no content,
+            so it takes up the full-width of the page.
+    step: ec-escaping-sidebar-block
     files:
         layout.twig: ~
         fallCollection.twig:
@@ -798,8 +782,6 @@ extracreditescaping_sidebarblockcoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    # @TODO Add context:
-    # $context->addVariable('fallCollectionTitle', 'Fall in love and look your best in the snow.');
     grading:
         look_for_block:
             type: php
@@ -844,8 +826,10 @@ extracreditescaping_wysiwygfiltercoding:
     question: |
         In our admin section, the content penguins are using a WYSIWYG editor to edit the
         pant descriptions.  But immediately, ugly HTML tags started printing out, instead
-        of being rendered! Add a filter to save the day.
-    step: ~
+        of being rendered!
+    question_steps:
+        - Use a filter on the printed content so that the HTML is *not* escaped.
+    step: ec-escaping-wysiwyg-filter
     files:
         singleItem.twig: ~
         PantsProduct.php:
@@ -855,11 +839,6 @@ extracreditescaping_wysiwygfiltercoding:
         browser:
             default_uri: render.php
             show_address_bar: false
-    # @TODO Add context:
-    #          $context->requireFile('PantsProduct.php');
-    #          $product = new \PantsProduct('The Black and Tan Trouser', 50);
-    #          $product->setDescription('The <strong>Hottest</strong> pants this fall!');
-    #          $context->addVariable('product', $product);
     grading:
         look_for_tag:
             type: http
