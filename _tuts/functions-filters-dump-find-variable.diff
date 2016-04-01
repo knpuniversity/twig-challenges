@@ -1,0 +1,36 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index 8ff2a73..2acf4e7 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -3,6 +3,9 @@
+ 
+ <h1>
+     {{ collectionTitle }}
++    <small>
++        <!-- print the description here -->
++    </small>
+ </h1>
+ 
+ <p class="lead">
+diff --git a/render.php b/render.php
+index 52f8a58..3c8d522 100644
+--- a/render.php
++++ b/render.php
+@@ -14,6 +14,7 @@ $twig = new \Twig_Environment($loader, [
+ ]);
+ 
+ $saleStartsAt = new \DateTime('+1 week');
++$fallCollectionPromoDescription = 'Still wearing your summer swim shorts? Time to plan for the 9 month winter in style. Look no further than our fall collection at Penguins Pants Plus!';
+ 
+ try {
+     $output = $twig->render('fallCollection.twig', [
+@@ -24,7 +25,8 @@ try {
+             'South Shore Swim Shorts',
+             'Starfish Halloween Costume'
+         ),
+-        'saleStartsAt' => $saleStartsAt
++        'saleStartsAt' => $saleStartsAt,
++        'fallCollectionPromoDescription' => $fallCollectionPromoDescription,
+     ]);
+ } catch (\Twig_Error_Syntax $e) {
+     // this tells the grader that there was an error

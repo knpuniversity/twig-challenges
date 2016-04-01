@@ -1,0 +1,50 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index aa29683..29d36fa 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -1,24 +1,26 @@
+ {% extends 'layout.twig' %}
+ 
+-<h1>
+-    {{ collectionTitle }}
+-    <small>{{ fallCollectionPromoDescription }}</small>
+-</h1>
++{% block body %}
++    <h1>
++        {{ collectionTitle }}
++        <small>{{ fallCollectionPromoDescription }}</small>
++    </h1>
+ 
+-<ul class="list-group">
+-{% for product in products %}
+-    <li class="list-group-item">
+-        <span class="badge">
+-            {{ random(['black', 'white', 'green']|upper) }}
+-        </span>
++    <ul class="list-group">
++    {% for product in products %}
++        <li class="list-group-item">
++            <span class="badge">
++                {{ random(['black', 'white', 'green']|upper) }}
++            </span>
+ 
+-        <!-- fix this to print the product's name -->
+-        {{ product.name }}
++            <!-- fix this to print the product's name -->
++            {{ product.name }}
+ 
+-        <span class="price">
+-            {{ product.price }}
+-        </span>
+-        (release date: {{ product.futureReleaseDate|date('Y-m-d') }})
+-    </li>
+-{% endfor %}
+-</ul>
++            <span class="price">
++                {{ product.price }}
++            </span>
++            (release date: {{ product.futureReleaseDate|date('Y-m-d') }})
++        </li>
++    {% endfor %}
++    </ul>
++{% endblock %}

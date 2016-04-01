@@ -1,0 +1,15 @@
+diff --git a/_featuredProduct.twig b/_featuredProduct.twig
+index 5b5f23d..13ae408 100644
+--- a/_featuredProduct.twig
++++ b/_featuredProduct.twig
+@@ -3,7 +3,9 @@
+     with cane, monocle and an elegant pocket watch!
+ 
+     <div class="featured-quantity">
+-        {{ quantityRemaining }}
++        {% if quantityRemaining is defined and quantityRemaning is not odd %}
++            {{ quantityRemaining }}
++        {% endif %}
+     </div>
+ 
+     <button class="btn btn-primary">Buy now</button>

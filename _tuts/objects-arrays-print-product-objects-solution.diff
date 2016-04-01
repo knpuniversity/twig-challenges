@@ -1,0 +1,19 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index c82487f..119c51a 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -14,11 +14,12 @@
+         </span>
+ 
+         <!-- fix this to print the product's name -->
+-        {{ product }}
++        {{ product.name }}
+ 
+         <span class="price">
+-            <!-- print price here -->
++            {{ product.price }}
+         </span>
++        (release date: {{ product.futureReleaseDate|date('Y-m-d') }})
+     </li>
+ {% endfor %}
+ </ul>

@@ -1,0 +1,13 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index 2acf4e7..aeade54 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -4,7 +4,7 @@
+ <h1>
+     {{ collectionTitle }}
+     <small>
+-        <!-- print the description here -->
++        {{ fallCollectionPromoDescription }}
+     </small>
+ </h1>
+ 

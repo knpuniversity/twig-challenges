@@ -1,0 +1,51 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index d11ffd1..72598d4 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -1,7 +1,21 @@
++<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"></head>
++<body>
++
+ <h1>
+     {{ collectionTitle }}
+ </h1>
+ 
++<p class="lead">
++    The sale starts: <!-- print the date here -->
++</p>
++
++<ul class="list-group">
+ {% for product in products %}
+-	<h3>{{ product }}</h3>
++	<li class="list-group-item">
++        {{ product }}
++    </li>
+ {% endfor %}
++</ul>
++
++</body>
++</html>
+\ No newline at end of file
+diff --git a/render.php b/render.php
+index 3182578..52f8a58 100644
+--- a/render.php
++++ b/render.php
+@@ -13,6 +13,8 @@ $twig = new \Twig_Environment($loader, [
+     'strict_variables' => true
+ ]);
+ 
++$saleStartsAt = new \DateTime('+1 week');
++
+ try {
+     $output = $twig->render('fallCollection.twig', [
+         'collectionTitle' => 'Fall in love and look your best in the snow.',
+@@ -21,7 +23,8 @@ try {
+             'Antarctic Snow Pants (in leopard seal print)',
+             'South Shore Swim Shorts',
+             'Starfish Halloween Costume'
+-        )
++        ),
++        'saleStartsAt' => $saleStartsAt
+     ]);
+ } catch (\Twig_Error_Syntax $e) {
+     // this tells the grader that there was an error

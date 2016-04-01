@@ -1,0 +1,132 @@
+diff --git a/PantsProduct.php b/PantsProduct.php
+new file mode 100644
+index 0000000..2c817ce
+--- /dev/null
++++ b/PantsProduct.php
+@@ -0,0 +1,51 @@
++<?php
++
++class PantsProduct
++{
++    private $name;
++
++    private $price;
++
++    private $quantity;
++
++    private $description;
++
++    public function __construct($name, $price, $quantity = 0)
++    {
++        $this->name = $name;
++        $this->price = $price;
++        $this->quantity = $quantity;
++    }
++
++    public function getName()
++    {
++        return $this->name;
++    }
++
++    public function getPrice()
++    {
++        return $this->price;
++    }
++
++    public function getFutureReleaseDate()
++    {
++        // our designers don't know when things will get released yet, so just
++        // always say it will be 1 week from now!
++        return new \DateTime('+1 week');
++    }
++
++    public function getDescription()
++    {
++        return $this->description;
++    }
++
++    public function setDescription($description)
++    {
++        $this->description = $description;
++    }
++
++    public function getQuantity()
++    {
++        return $this->quantity;
++    }
++}
+diff --git a/fallCollection.twig b/fallCollection.twig
+index f02cca7..c82487f 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -3,20 +3,9 @@
+ 
+ <h1>
+     {{ collectionTitle }}
+-    <small>
+-        {{ fallCollectionPromoDescription }}
+-    </small>
++    <small>{{ fallCollectionPromoDescription }}</small>
+ </h1>
+ 
+-<p class="lead">
+-    The sale starts: {{ saleStartsAt|date('F jS') }}
+-</p>
+-
+-<h3>
+-    <span class="glyphicon glyphicon-star"></span>
+-    {{ products[randomProductKey] }}
+-</h3>
+-
+ <ul class="list-group">
+ {% for product in products %}
+ 	<li class="list-group-item">
+@@ -24,7 +13,12 @@
+             {{ random(['black', 'white', 'green']|upper) }}
+         </span>
+ 
++        <!-- fix this to print the product's name -->
+         {{ product }}
++
++        <span class="price">
++            <!-- print price here -->
++        </span>
+     </li>
+ {% endfor %}
+ </ul>
+diff --git a/render.php b/render.php
+index 30d77d4..8df8b40 100644
+--- a/render.php
++++ b/render.php
+@@ -1,6 +1,7 @@
+ <?php
+ 
+ require __DIR__.'/vendor/autoload.php';
++require __DIR__.'/PantsProduct.php';
+ 
+ /*
+  * Basic Twig setup, that will be modified by future steps
+@@ -15,16 +16,17 @@ $twig = new \Twig_Environment($loader, [
+ 
+ $saleStartsAt = new \DateTime('+1 week');
+ $fallCollectionPromoDescription = 'Still wearing your summer swim shorts? Time to plan for the 9 month winter in style. Look no further than our fall collection at Penguins Pants Plus!';
++$products = array(
++    new \PantsProduct('The Black and Tan Trouser', 50),
++    new \PantsProduct('Antarctic Snow Pants (in leopard seal print)', 99),
++    new \PantsProduct('South Shore Swim Shorts', 49),
++    new \PantsProduct('Starfish Halloween Costume', 35)
++);
+ 
+ try {
+     $output = $twig->render('fallCollection.twig', [
+         'collectionTitle' => 'Fall in love and look your best in the snow.',
+-        'products' => array(
+-            'The Black and Tan Trouser',
+-            'Antarctic Snow Pants (in leopard seal print)',
+-            'South Shore Swim Shorts',
+-            'Starfish Halloween Costume'
+-        ),
++        'products' => $products,
+         'saleStartsAt' => $saleStartsAt,
+         'fallCollectionPromoDescription' => $fallCollectionPromoDescription,
+         'randomProductKey' => rand(0, 3)

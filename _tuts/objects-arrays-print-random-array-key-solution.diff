@@ -1,0 +1,13 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index 95b07b0..f02cca7 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -14,7 +14,7 @@
+ 
+ <h3>
+     <span class="glyphicon glyphicon-star"></span>
+-    <!-- print a random featured product here! -->
++    {{ products[randomProductKey] }}
+ </h3>
+ 
+ <ul class="list-group">

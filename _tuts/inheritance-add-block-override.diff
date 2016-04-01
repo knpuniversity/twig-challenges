@@ -1,0 +1,14 @@
+diff --git a/layout.twig b/layout.twig
+index 404215f..6e0a06e 100644
+--- a/layout.twig
++++ b/layout.twig
+@@ -10,5 +10,8 @@
+ 
+     {% block body %}{% endblock %}
+ 
++    <footer>
++        You're hip, you're cool, you're a penguin!
++    </footer>
+ </body>
+ </html>
+\ No newline at end of file

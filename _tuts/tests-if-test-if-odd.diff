@@ -1,0 +1,13 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index b31dc57..a59f998 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -8,6 +8,8 @@
+         <small>{{ fallCollectionPromoDescription }}</small>
+     </h1>
+ 
++    {# Print your message here if there are an odd number of pants! #}
++
+     <ul class="list-group">
+     {% for product in products %}
+         <li class="list-group-item">

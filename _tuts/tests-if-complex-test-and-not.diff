@@ -1,0 +1,14 @@
+diff --git a/_featuredProduct.twig b/_featuredProduct.twig
+index 2b17584..5b5f23d 100644
+--- a/_featuredProduct.twig
++++ b/_featuredProduct.twig
+@@ -2,5 +2,9 @@
+     This week's featured product is a pin-striped full suit, complete
+     with cane, monocle and an elegant pocket watch!
+ 
++    <div class="featured-quantity">
++        {{ quantityRemaining }}
++    </div>
++
+     <button class="btn btn-primary">Buy now</button>
+ </section>

@@ -1,0 +1,13 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index 72598d4..b2ac915 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -6,7 +6,7 @@
+ </h1>
+ 
+ <p class="lead">
+-    The sale starts: <!-- print the date here -->
++    The sale starts: {{ saleStartsAt|date('F jS') }}
+ </p>
+ 
+ <ul class="list-group">

@@ -1,0 +1,27 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index 29d36fa..c8802b3 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -24,3 +24,7 @@
+     {% endfor %}
+     </ul>
+ {% endblock %}
++
++{% block footer %}
++    Winter is coming! Get your pants!
++{% endblock %}
+diff --git a/layout.twig b/layout.twig
+index 6e0a06e..4cfbb9e 100644
+--- a/layout.twig
++++ b/layout.twig
+@@ -11,7 +11,9 @@
+     {% block body %}{% endblock %}
+ 
+     <footer>
++        {% block footer %}
+         You're hip, you're cool, you're a penguin!
++        {% endblock %}
+     </footer>
+ </body>
+ </html>
+\ No newline at end of file

@@ -1,0 +1,16 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index b2ac915..417cd6c 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -12,6 +12,11 @@
+ <ul class="list-group">
+ {% for product in products %}
+ 	<li class="list-group-item">
++        <span class="badge">
++            <!-- print black, white or green here randomly -->
++            <!-- and make them all capital letters -->
++        </span>
++
+         {{ product }}
+     </li>
+ {% endfor %}

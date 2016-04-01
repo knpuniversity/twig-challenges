@@ -1,0 +1,23 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index d3f8adf..1e16a12 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -16,12 +16,12 @@
+             {{ product.name }}
+             <span class="price">{{ product.price }}</span>
+         </li>
++    {% else %}
++        <li>
++            <div class="alert alert-warning">
++                No pants for you!
++            </div>
++        </li>
+     {% endfor %}
+     </ul>
+ {% endblock %}
+-
+-{% if products is empty %}
+-    <div class="alert alert-warning">
+-        No pants for you!
+-    </div>
+-{% endif %}

@@ -1,0 +1,28 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index aeade54..95b07b0 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -12,6 +12,11 @@
+     The sale starts: {{ saleStartsAt|date('F jS') }}
+ </p>
+ 
++<h3>
++    <span class="glyphicon glyphicon-star"></span>
++    <!-- print a random featured product here! -->
++</h3>
++
+ <ul class="list-group">
+ {% for product in products %}
+ 	<li class="list-group-item">
+diff --git a/render.php b/render.php
+index 3c8d522..30d77d4 100644
+--- a/render.php
++++ b/render.php
+@@ -27,6 +27,7 @@ try {
+         ),
+         'saleStartsAt' => $saleStartsAt,
+         'fallCollectionPromoDescription' => $fallCollectionPromoDescription,
++        'randomProductKey' => rand(0, 3)
+     ]);
+ } catch (\Twig_Error_Syntax $e) {
+     // this tells the grader that there was an error

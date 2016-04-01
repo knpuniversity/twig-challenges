@@ -19,7 +19,132 @@
             "id": "basic-for-loop-coding",
             "name": "Basic: For Loop Coding",
             "description": null
+        },
+        {
+            "id": "basics-for-loop-coding-solution",
+            "name": "Basics: For Loop Coding [Solution]",
+            "description": null
+        },
+        {
+            "id": "functions-filters-date-filter",
+            "name": "Functions\/Filters: Date Filter",
+            "description": null
+        },
+        {
+            "id": "functions-filters-date-filter-solution",
+            "name": "Functions\/Filters: Date Filter [Solution]",
+            "description": null
+        },
+        {
+            "id": "functions-filters-random-fxn-filter",
+            "name": "Functions\/Filters: Random fxn & Filter",
+            "description": null
+        },
+        {
+            "id": "functions-filters-random-fxn-filter-solution",
+            "name": "Functions\/Filters: Random fxn & Filter [Solution]",
+            "description": null
+        },
+        {
+            "id": "functions-filters-dump-find-variable",
+            "name": "Functions\/Filters: Dump Find Variable",
+            "description": null
+        },
+        {
+            "id": "functions-filters-dump-find-variable-solution",
+            "name": "Functions\/Filters: Dump Find Variable [Solution]",
+            "description": null
+        },
+        {
+            "id": "objects-arrays-print-random-array-key",
+            "name": "Objects\/Arrays: Print random array key",
+            "description": null
+        },
+        {
+            "id": "objects-arrays-print-random-array-key-solution",
+            "name": "Objects\/Arrays: Print random array key [Solution]",
+            "description": null
+        },
+        {
+            "id": "objects-arrays-print-product-objects",
+            "name": "Objects\/Arrays: Print Product Objects",
+            "description": null
+        },
+        {
+            "id": "objects-arrays-print-product-objects-solution",
+            "name": "Objects\/Arrays: Print Product Objects [Solution]",
+            "description": null
+        },
+        {
+            "id": "inheritance-create-layout-remove-dup",
+            "name": "Inheritance: Create Layout, Remove Dup",
+            "description": null
+        },
+        {
+            "id": "inheritance-create-layout-remove-dup-solution",
+            "name": "Inheritance: Create Layout, Remove Dup [Solution]",
+            "description": null
+        },
+        {
+            "id": "inheritance-fix-extends-error",
+            "name": "Inheritance: Fix extends Error",
+            "description": null
+        },
+        {
+            "id": "inheritance-fix-extends-error-solution",
+            "name": "Inheritance: Fix extends Error [Solution]",
+            "description": null
+        },
+        {
+            "id": "inheritance-add-block-override",
+            "name": "Inheritance: Add Block & Override",
+            "description": null
+        },
+        {
+            "id": "inheritance-add-block-override-solution",
+            "name": "Inheritance: Add Block & Override [Solution]",
+            "description": null
+        },
+        {
+            "id": "including-use-include",
+            "name": "Including: Use include",
+            "description": null
+        },
+        {
+            "id": "including-use-include-solution",
+            "name": "Including: Use include [Solution]",
+            "description": null
+        },
+        {
+            "id": "tests-if-test-if-odd",
+            "name": "Tests\/If: Test if odd",
+            "description": null
+        },
+        {
+            "id": "tests-if-test-if-odd-solution",
+            "name": "Tests\/If: Test if odd [Solution]",
+            "description": null
+        },
+        {
+            "id": "tests-if-complex-test-and-not",
+            "name": "Tests\/If: Complex test and not",
+            "description": null
+        },
+        {
+            "id": "tests-if-complex-test-and-not-solution",
+            "name": "Tests\/If: Complex test and not [Solution]",
+            "description": null
+        },
+        {
+            "id": "for-inline-if-for-else",
+            "name": "For\/Inline if: For else",
+            "description": null
+        },
+        {
+            "id": "for-inline-if-for-else-solution",
+            "name": "For\/Inline if: For else [Solution]",
+            "description": null
         }
     ],
-    "sha": "73755dae879a18a9a518c3058fdf968246873941"
+    "sha": "aa0fcb878db3e42a0fab8236affc2333fde0fcc6"
 }

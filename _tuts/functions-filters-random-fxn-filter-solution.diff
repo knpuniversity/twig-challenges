@@ -1,0 +1,14 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index 417cd6c..8ff2a73 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -13,8 +13,7 @@
+ {% for product in products %}
+ 	<li class="list-group-item">
+         <span class="badge">
+-            <!-- print black, white or green here randomly -->
+-            <!-- and make them all capital letters -->
++            {{ random(['black', 'white', 'green']|upper) }}
+         </span>
+ 
+         {{ product }}

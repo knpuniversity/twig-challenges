@@ -1,0 +1,39 @@
+diff --git a/_featuredProduct.twig b/_featuredProduct.twig
+new file mode 100644
+index 0000000..e69de29
+diff --git a/fallCollection.twig b/fallCollection.twig
+index c8802b3..f22101c 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -1,6 +1,13 @@
+ {% extends 'layout.twig' %}
+ 
+ {% block body %}
++    <section class="featured-product">
++        This week's featured product is a pin-striped full suit, complete
++        with cane, monocle and an elegant pocket watch!
++
++        <button class="btn btn-primary">Buy now</button>
++    </section>
++
+     <h1>
+         {{ collectionTitle }}
+         <small>{{ fallCollectionPromoDescription }}</small>
+diff --git a/mainCollection.twig b/mainCollection.twig
+index 5178a8b..cff2b60 100644
+--- a/mainCollection.twig
++++ b/mainCollection.twig
+@@ -1,6 +1,13 @@
+ {% extends 'layout.twig' %}
+ 
+ {% block body %}
++    <section class="featured-product">
++        This week's featured product is a pin-striped full suit, complete
++        with cane, monocle and an elegant pocket watch!
++
++        <button class="btn btn-primary">Buy now</button>
++    </section>
++
+     <h1>Welcome to our main collection or products</h1>
+ 
+     <div>The main products are being updated!</div>

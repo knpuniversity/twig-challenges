@@ -1,0 +1,12 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index d598dd7..d11ffd1 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -1,3 +1,7 @@
+ <h1>
+     {{ collectionTitle }}
+ </h1>
++
++{% for product in products %}
++	<h3>{{ product }}</h3>
++{% endfor %}
