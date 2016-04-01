@@ -95,13 +95,16 @@ basics_incorrectopentagsmc:
 # FunctionsFilters
 functionsfilters_datefiltercoding:
     question: |
+        This is going **great**! So we added some CSS to start making
+        things look nice!
+
         The penguins will want to get their flippers on these pants as
         *soon* as possible. So, we're passing in a `saleStartsAt` date
         variable that's set to *when* these fresh pants are available.
     question_steps:
         - |
             Print the new `saleStartsAt` variable by using the `date` **filter**
-            and the format `F jS` (e.g. January 5th) inside the `h2` tag.
+            and the format `F jS` (e.g. January 5th) inside the `p.lead` tag.
     step: functions-filters-date-filter
     files:
         fallCollection.twig: ~
@@ -120,7 +123,7 @@ functionsfilters_datefiltercoding:
             assertTrue: input('fallCollection.twig') matches '/F jS/'
             failure: Make sure you use the `F jS` (e.g. January 5th) format for the date.
         # @TODO Don't know how we can test this:
-        # $htmlGrader->assertElementContains('h2', $this->getSaleStartsAt()->format('F jS'));
+        # $htmlGrader->assertElementContains('p.lead', $this->getSaleStartsAt()->format('F jS'));
 
 functionsfilters_randomfunctionwithfiltercoding:
     question: |
