@@ -12,6 +12,7 @@ $twig = new \Twig_Environment($loader, [
     'debug' => true,
     'strict_variables' => true
 ]);
+$twig->addExtension(new \Twig_Extension_Debug());
 
 try {
     $output = $twig->render('fallCollection.twig');
