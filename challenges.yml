@@ -389,7 +389,11 @@ includingothertemplates_useincludecoding:
         look_for_include_1:
             type: php
             assertTrue: input('fallCollection.twig') matches '/include/'
-            failure: I don't see you including other template!?
+            failure: Are you including `_featuredProduct.twig` from inside `fallCollection.twig`?
+        look_for_include_2:
+            type: php
+            assertTrue: input('mainCollection.twig') matches '/include/'
+            failure: Are you including `_featuredProduct.twig` from inside `mainCollection.twig`?
         look_for_text_1:
             type: php
             assertTrue: input('_featuredProduct.twig') matches '/pin-striped full suit/'
@@ -401,7 +405,7 @@ includingothertemplates_useincludecoding:
         look_for_include_2:
             type: php
             assertTrue: input('mainCollection.twig') matches '/include/'
-            failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `fallCollection.twig`
+            failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `mainCollection.twig`
 
 includingothertemplates_includeandvariablesmc:
     question: |
@@ -488,7 +492,7 @@ testsifstatements_testifoddcoding:
             failure: I don't see the *"We promise, 1 more pair of pants is coming very soon!"* text being printed!?
         look_for_length:
             type: php
-            assertTrue: input('fallCollection.twig') matches '/\| *length/'
+            assertTrue: input('fallCollection.twig') matches '/\\| *length/'
             failure: Use the `length` filter to count the products.
         look_for_is_odd:
             type: php
@@ -504,8 +508,8 @@ testsifstatements_complextestandnotcoding:
 
     question_steps:
         - |
-            Add an `if` statement so that the `featured-quantity` element is printed
-            *only* if the `quantityRemaining` variable is defined **and** if it is *not*
+            Add an `if` statement so that the `featured-quantity` element in `_featuredProduct.twig`
+            is printed *only* if the `quantityRemaining` variable is defined **and** if it is *not*
             an odd number.
         - |
             **Hint**: No `quantityRemaining` variable is being passed to `fallCollection.twig`.
@@ -513,8 +517,8 @@ testsifstatements_complextestandnotcoding:
             `include()` function with different values.
     step: tests-if-complex-test-and-not
     files:
-        _featuredProduct.twig: ~
         fallCollection.twig: ~
+        _featuredProduct.twig: ~
     features:
         editor: ~
         browser:
