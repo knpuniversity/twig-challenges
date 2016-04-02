@@ -789,8 +789,8 @@ extracreditescaping_sidebarblockcoding:
     grading:
         look_for_block:
             type: php
-            assertTrue: input('layout.twig') matches '/block(/'
-            failure: Use the `block('sidebar') function to determine if the child template has any sidebar content.
+            assertTrue: input('layout.twig') matches '/block\\(/'
+            failure: Use the `block('sidebar')` function to determine if the child template has any sidebar content.
         look_for_class_1:
             type: http
             assertFalse: body() matches '/col-xs-3/'
@@ -832,7 +832,7 @@ extracreditescaping_wysiwygfiltercoding:
         pant descriptions.  But immediately, ugly HTML tags started printing out, instead
         of being rendered!
     question_steps:
-        - Use a filter on the printed content so that the HTML is *not* escaped.
+        - Use a filter on the printed `description` so that the HTML is *not* escaped.
     step: ec-escaping-wysiwyg-filter
     files:
         singleItem.twig: ~
@@ -847,7 +847,7 @@ extracreditescaping_wysiwygfiltercoding:
         look_for_tag:
             type: http
             assertTrue: body() matches '/<strong>/'
-            failure: The `strong` tag still looks escaped - how can you make it raw?
+            failure: The `strong` tag still looks escaped - how can you make it (hint) raw?
         look_for_raw:
             type: php
             assertTrue: input('singleItem.twig') matches '/\| *raw/'
