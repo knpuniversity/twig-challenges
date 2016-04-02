@@ -1,0 +1,13 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index 929850a..f18713c 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -7,7 +7,7 @@
+     </h1>
+ 
+     <ul class="list-group">
+-    {% for product in products %}
++    {% for product in products if product.quantity > 0 %}
+         <li class="list-group-item">
+             <span class="badge">
+                 {{ product.quantity }}

@@ -1,0 +1,17 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index f156148..6be0642 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -10,11 +10,7 @@
+     {% for product in products %}
+         <li class="list-group-item">
+             <span class="badge">
+-                {% if product.quantity > 0 %}
+-                    {{ product.quantity }}
+-                {% else %}
+-                    Out of stock
+-                {% endif %}
++                {{ product.quantity > 0 ? product.quantity : 'Out of stock' }}
+             </span>
+ 
+             {{ product.name }}

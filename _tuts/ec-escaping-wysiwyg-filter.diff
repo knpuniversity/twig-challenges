@@ -1,0 +1,35 @@
+diff --git a/render.php b/render.php
+index 783012c..5cb0280 100644
+--- a/render.php
++++ b/render.php
+@@ -24,10 +24,12 @@ $products = array(
+     new \PantsProduct('Starfish Halloween Costume', 35, 62)
+ );
+ 
++$product = new \PantsProduct('The Black and Tan Trouser', 50);
++$product->setDescription('The <strong>Hottest</strong> pants this fall!');
++
+ try {
+-    $output = $twig->render('fallCollection.twig', [
+-        'collectionTitle' => 'Fall in love and look your best in the snow.',
+-        'fallCollectionPromoDescription' => $fallCollectionPromoDescription,
++    $output = $twig->render('singleItem.twig', [
++        'product' => $product
+     ]);
+ } catch (\Twig_Error_Syntax $e) {
+     // this tells the grader that there was an error
+diff --git a/singleItem.twig b/singleItem.twig
+new file mode 100644
+index 0000000..a0b680f
+--- /dev/null
++++ b/singleItem.twig
+@@ -0,0 +1,9 @@
++{% extends 'layout.twig' %}
++
++{% block body %}
++    <h1>{{ product.name }}</h1>
++
++    <div>
++        {{ product.description }}
++    </div>
++{% endblock %}

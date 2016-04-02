@@ -1,5 +1,5 @@
 diff --git a/fallCollection.twig b/fallCollection.twig
-index fcc3b44..d3f8adf 100644
+index 6e4b23b..53bb3f4 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
 @@ -1,19 +1,11 @@
@@ -23,7 +23,7 @@ index fcc3b44..d3f8adf 100644
      {% for product in products %}
          <li class="list-group-item">
 @@ -21,18 +13,15 @@
-                 {{ random(['black', 'white', 'green']|upper) }}
+                 {{ random(['black', 'white', 'green'])|upper }}
              </span>
  
 -            <!-- fix this to print the product's name -->
@@ -37,23 +37,23 @@ index fcc3b44..d3f8adf 100644
          </li>
      {% endfor %}
      </ul>
- {% endblock %}
+-{% endblock %}
  
 -{% block footer %}
 -    Winter is coming! Get your pants!
--{% endblock %}
-+{% if products is empty %}
-+    <div class="alert alert-warning">
-+        No pants for you!
-+    </div>
-+{% endif %}
++    {% if products is empty %}
++        <div class="alert alert-warning">
++            No pants for you!
++        </div>
++    {% endif %}
+ {% endblock %}
 diff --git a/render.php b/render.php
-index 8df8b40..318c984 100644
+index 4d9b5d8..2682994 100644
 --- a/render.php
 +++ b/render.php
-@@ -22,6 +22,7 @@ $products = array(
+@@ -23,6 +23,7 @@ $products = array(
      new \PantsProduct('South Shore Swim Shorts', 49),
-     new \PantsProduct('Starfish Halloween Costume', 35)
+     //new \PantsProduct('Starfish Halloween Costume', 35)
  );
 +$products = [];
  

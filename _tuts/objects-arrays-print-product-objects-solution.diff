@@ -1,5 +1,5 @@
 diff --git a/fallCollection.twig b/fallCollection.twig
-index c82487f..119c51a 100644
+index afedca8..07a5b0a 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
 @@ -14,11 +14,12 @@

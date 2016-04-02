@@ -1,12 +1,20 @@
 diff --git a/layout.twig b/layout.twig
-index 404215f..6e0a06e 100644
+index 34d58ff..5f2da7f 100644
 --- a/layout.twig
 +++ b/layout.twig
-@@ -10,5 +10,8 @@
+@@ -3,6 +3,7 @@
+ <head>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
++    <link rel="stylesheet" href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css">
+ </head>
+ <body>
+ 
+@@ -16,5 +17,8 @@
  
      {% block body %}{% endblock %}
  
-+    <footer>
++    <footer class="footer">
 +        You're hip, you're cool, you're a penguin!
 +    </footer>
  </body>

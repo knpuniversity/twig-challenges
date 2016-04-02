@@ -10,7 +10,7 @@ index e69de29..2b17584 100644
 +    <button class="btn btn-primary">Buy now</button>
 +</section>
 diff --git a/fallCollection.twig b/fallCollection.twig
-index f22101c..b31dc57 100644
+index c8c258d..3dc5fb5 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
 @@ -1,12 +1,7 @@

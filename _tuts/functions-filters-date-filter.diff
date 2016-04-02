@@ -27,19 +27,19 @@ index d11ffd1..72598d4 100644
 +</html>
 \ No newline at end of file
 diff --git a/render.php b/render.php
-index 3182578..52f8a58 100644
+index 7f5eeba..dbe9b5e 100644
 --- a/render.php
 +++ b/render.php
-@@ -13,6 +13,8 @@ $twig = new \Twig_Environment($loader, [
-     'strict_variables' => true
+@@ -14,6 +14,8 @@ $twig = new \Twig_Environment($loader, [
  ]);
+ $twig->addExtension(new \Twig_Extension_Debug());
  
 +$saleStartsAt = new \DateTime('+1 week');
 +
  try {
      $output = $twig->render('fallCollection.twig', [
          'collectionTitle' => 'Fall in love and look your best in the snow.',
-@@ -21,7 +23,8 @@ try {
+@@ -22,7 +24,8 @@ try {
              'Antarctic Snow Pants (in leopard seal print)',
              'South Shore Swim Shorts',
              'Starfish Halloween Costume'

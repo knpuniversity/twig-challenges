@@ -1,0 +1,40 @@
+diff --git a/_cannotFly.twig b/_cannotFly.twig
+new file mode 100644
+index 0000000..a970ca7
+--- /dev/null
++++ b/_cannotFly.twig
+@@ -0,0 +1,3 @@
++<div>
++    Penguins cannot fly, due to: {{ reason }}
++</div>
+diff --git a/aboutPenguins.twig b/aboutPenguins.twig
+new file mode 100644
+index 0000000..f93ff2f
+--- /dev/null
++++ b/aboutPenguins.twig
+@@ -0,0 +1,5 @@
++{% extends 'layout.twig' %}
++
++{% block body %}
++    {{ include('_cannotFly.twig', reason: 'little wings') }}
++{% endblock %}
+\ No newline at end of file
+diff --git a/render.php b/render.php
+index 1efa434..19c10bc 100644
+--- a/render.php
++++ b/render.php
+@@ -25,13 +25,7 @@ $products = array(
+ );
+ 
+ try {
+-    $output = $twig->render('fallCollection.twig', [
+-        'collectionTitle' => 'Fall in love and look your best in the snow.',
+-        'products' => $products,
+-        'saleStartsAt' => $saleStartsAt,
+-        'fallCollectionPromoDescription' => $fallCollectionPromoDescription,
+-        'randomProductKey' => rand(0, 3)
+-    ]);
++    $output = $twig->render('aboutPenguins.twig');
+ } catch (\Twig_Error_Syntax $e) {
+     // this tells the grader that there was an error
+     $_ENV['language_error'] = true;

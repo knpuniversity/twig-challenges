@@ -1,5 +1,5 @@
 diff --git a/fallCollection.twig b/fallCollection.twig
-index 29d36fa..aa29683 100644
+index 8e6e8c7..cfc193b 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
 @@ -1,26 +1,24 @@
@@ -19,13 +19,13 @@ index 29d36fa..aa29683 100644
 -    {% for product in products %}
 -        <li class="list-group-item">
 -            <span class="badge">
--                {{ random(['black', 'white', 'green']|upper) }}
+-                {{ random(['black', 'white', 'green'])|upper }}
 -            </span>
 +<ul class="list-group">
 +{% for product in products %}
 +    <li class="list-group-item">
 +        <span class="badge">
-+            {{ random(['black', 'white', 'green']|upper) }}
++            {{ random(['black', 'white', 'green'])|upper }}
 +        </span>
  
 -            <!-- fix this to print the product's name -->

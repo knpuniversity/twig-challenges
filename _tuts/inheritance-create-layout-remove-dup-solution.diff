@@ -1,8 +1,8 @@
 diff --git a/fallCollection.twig b/fallCollection.twig
-index a19d48e..29d36fa 100644
+index 5693171..8e6e8c7 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
-@@ -1,13 +1,6 @@
+@@ -1,19 +1,6 @@
 -<!DOCTYPE html>
 -<html lang="en">
 -<head>
@@ -11,27 +11,32 @@ index a19d48e..29d36fa 100644
 -</head>
 -<body>
 -
--    <header>Penguins Pants Plus!</header>
+-    <nav class="navbar navbar-inverse">
+-        <div class="container">
+-            <div class="navbar-header">
+-                <a class="navbar-brand" href="#">Penguin Pants Plus</a>
+-            </div>
+-        </div>
+-    </nav>
 +{% extends 'layout.twig' %}
  
 +{% block body %}
      <h1>
          {{ collectionTitle }}
          <small>{{ fallCollectionPromoDescription }}</small>
-@@ -30,6 +23,4 @@
+@@ -36,6 +23,4 @@
          </li>
      {% endfor %}
      </ul>
 -
 -</body>
 -</html>
-\ No newline at end of file
 +{% endblock %}
 diff --git a/layout.twig b/layout.twig
-index e69de29..404215f 100644
+index e69de29..34d58ff 100644
 --- a/layout.twig
 +++ b/layout.twig
-@@ -0,0 +1,14 @@
+@@ -0,0 +1,20 @@
 +<!DOCTYPE html>
 +<html lang="en">
 +<head>
@@ -40,7 +45,13 @@ index e69de29..404215f 100644
 +</head>
 +<body>
 +
-+    <header>Penguins Pants Plus!</header>
++    <nav class="navbar navbar-inverse">
++        <div class="container">
++            <div class="navbar-header">
++                <a class="navbar-brand" href="#">Penguin Pants Plus</a>
++            </div>
++        </div>
++    </nav>
 +
 +    {% block body %}{% endblock %}
 +
@@ -48,10 +59,10 @@ index e69de29..404215f 100644
 +</html>
 \ No newline at end of file
 diff --git a/mainCollection.twig b/mainCollection.twig
-index 290462c..5178a8b 100644
+index 489c8f9..5178a8b 100644
 --- a/mainCollection.twig
 +++ b/mainCollection.twig
-@@ -1,16 +1,7 @@
+@@ -1,22 +1,7 @@
 -<!DOCTYPE html>
 -<html lang="en">
 -<head>
@@ -60,7 +71,13 @@ index 290462c..5178a8b 100644
 -</head>
 -<body>
 -
--    <header>Penguins Pants Plus!</header>
+-    <nav class="navbar navbar-inverse">
+-        <div class="container">
+-            <div class="navbar-header">
+-                <a class="navbar-brand" href="#">Penguin Pants Plus</a>
+-            </div>
+-        </div>
+-    </nav>
 +{% extends 'layout.twig' %}
  
 +{% block body %}

@@ -1,0 +1,12 @@
+diff --git a/aboutPenguins.twig b/aboutPenguins.twig
+index f93ff2f..1b0caef 100644
+--- a/aboutPenguins.twig
++++ b/aboutPenguins.twig
+@@ -1,5 +1,5 @@
+ {% extends 'layout.twig' %}
+ 
+ {% block body %}
+-    {{ include('_cannotFly.twig', reason: 'little wings') }}
++    {{ include('_cannotFly.twig', {reason: 'little wings'}) }}
+ {% endblock %}
+\ No newline at end of file

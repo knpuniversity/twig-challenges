@@ -1,5 +1,5 @@
 diff --git a/fallCollection.twig b/fallCollection.twig
-index 29d36fa..c8802b3 100644
+index 8e6e8c7..7e12789 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
 @@ -24,3 +24,7 @@
@@ -11,13 +11,13 @@ index 29d36fa..c8802b3 100644
 +    Winter is coming! Get your pants!
 +{% endblock %}
 diff --git a/layout.twig b/layout.twig
-index 6e0a06e..4cfbb9e 100644
+index 5f2da7f..f53d311 100644
 --- a/layout.twig
 +++ b/layout.twig
-@@ -11,7 +11,9 @@
+@@ -18,7 +18,9 @@
      {% block body %}{% endblock %}
  
-     <footer>
+     <footer class="footer">
 +        {% block footer %}
          You're hip, you're cool, you're a penguin!
 +        {% endblock %}

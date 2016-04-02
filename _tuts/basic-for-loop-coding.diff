@@ -1,8 +1,8 @@
 diff --git a/render.php b/render.php
-index 1ef42ca..3182578 100644
+index 5ca9bb2..7f5eeba 100644
 --- a/render.php
 +++ b/render.php
-@@ -15,7 +15,13 @@ $twig = new \Twig_Environment($loader, [
+@@ -16,7 +16,13 @@ $twig->addExtension(new \Twig_Extension_Debug());
  
  try {
      $output = $twig->render('fallCollection.twig', [

@@ -2,7 +2,7 @@ diff --git a/_featuredProduct.twig b/_featuredProduct.twig
 new file mode 100644
 index 0000000..e69de29
 diff --git a/fallCollection.twig b/fallCollection.twig
-index c8802b3..f22101c 100644
+index 7e12789..c8c258d 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
 @@ -1,6 +1,13 @@

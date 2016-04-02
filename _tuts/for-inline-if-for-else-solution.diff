@@ -1,5 +1,5 @@
 diff --git a/fallCollection.twig b/fallCollection.twig
-index d3f8adf..1e16a12 100644
+index 53bb3f4..48c181f 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
 @@ -16,12 +16,12 @@
@@ -14,10 +14,10 @@ index d3f8adf..1e16a12 100644
 +        </li>
      {% endfor %}
      </ul>
- {% endblock %}
 -
--{% if products is empty %}
--    <div class="alert alert-warning">
--        No pants for you!
--    </div>
--{% endif %}
+-    {% if products is empty %}
+-        <div class="alert alert-warning">
+-            No pants for you!
+-        </div>
+-    {% endif %}
+ {% endblock %}

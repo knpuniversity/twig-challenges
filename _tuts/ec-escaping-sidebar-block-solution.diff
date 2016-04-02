@@ -1,0 +1,19 @@
+diff --git a/layout.twig b/layout.twig
+index 685b686..da21459 100644
+--- a/layout.twig
++++ b/layout.twig
+@@ -17,10 +17,13 @@
+ 
+     <div class="container">
+         <div class="row">
++            {% if block('sidebar') %}
+             <div class="col-xs-3">
+                 {% block sidebar %}{% endblock %}
+             </div>
+-            <div class="col-xs-9">
++            {% endif %}
++
++            <div class="{{ block('sidebar') ? 'col-xs-9' : 'col-xs-12' }}">
+                 {% block body %}{% endblock %}
+             </div>
+         </div>

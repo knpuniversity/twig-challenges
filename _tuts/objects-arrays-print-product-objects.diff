@@ -56,10 +56,10 @@ index 0000000..2c817ce
 +    }
 +}
 diff --git a/fallCollection.twig b/fallCollection.twig
-index f02cca7..c82487f 100644
+index 37ccf31..afedca8 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
-@@ -3,20 +3,9 @@
+@@ -3,16 +3,9 @@
  
  <h1>
      {{ collectionTitle }}
@@ -69,10 +69,6 @@ index f02cca7..c82487f 100644
 +    <small>{{ fallCollectionPromoDescription }}</small>
  </h1>
  
--<p class="lead">
--    The sale starts: {{ saleStartsAt|date('F jS') }}
--</p>
--
 -<h3>
 -    <span class="glyphicon glyphicon-star"></span>
 -    {{ products[randomProductKey] }}
@@ -81,8 +77,8 @@ index f02cca7..c82487f 100644
  <ul class="list-group">
  {% for product in products %}
  	<li class="list-group-item">
-@@ -24,7 +13,12 @@
-             {{ random(['black', 'white', 'green']|upper) }}
+@@ -20,7 +13,12 @@
+             {{ random(['black', 'white', 'green'])|upper }}
          </span>
  
 +        <!-- fix this to print the product's name -->
@@ -95,7 +91,7 @@ index f02cca7..c82487f 100644
  {% endfor %}
  </ul>
 diff --git a/render.php b/render.php
-index 30d77d4..8df8b40 100644
+index 226640d..f8862b4 100644
 --- a/render.php
 +++ b/render.php
 @@ -1,6 +1,7 @@
@@ -106,7 +102,7 @@ index 30d77d4..8df8b40 100644
  
  /*
   * Basic Twig setup, that will be modified by future steps
-@@ -15,16 +16,17 @@ $twig = new \Twig_Environment($loader, [
+@@ -16,16 +17,17 @@ $twig->addExtension(new \Twig_Extension_Debug());
  
  $saleStartsAt = new \DateTime('+1 week');
  $fallCollectionPromoDescription = 'Still wearing your summer swim shorts? Time to plan for the 9 month winter in style. Look no further than our fall collection at Penguins Pants Plus!';

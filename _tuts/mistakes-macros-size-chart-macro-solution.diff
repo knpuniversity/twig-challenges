@@ -1,0 +1,70 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index 9831757..a33439d 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -1,8 +1,8 @@
+ {% extends 'layout.twig' %}
++{% import 'macros.twig' as myMacros %}
+ 
+ {% block body %}
+-    <h1>
+-        {{ collectionTitle }}
+-        <small>{{ fallCollectionPromoDescription }}</small>
+-    </h1>
++    <h1>{{ collectionTitle }}</h1>
++
++    {{ myMacros.printSizingChart(false) }}
+ {% endblock %}
+diff --git a/macros.twig b/macros.twig
+index e69de29..05f2ebf 100644
+--- a/macros.twig
++++ b/macros.twig
+@@ -0,0 +1,20 @@
++{% macro printSizingChart(showXLColumn) %}
++    <table class="sizing-chart table table-striped">
++        <tr>
++            <th>S</th>
++            <th>M</th>
++            <th>L</th>
++            {% if showXLColumn %}
++                <th>XL</th>
++            {% endif %}
++        </tr>
++        <tr>
++            <td>5-15 lbs</td>
++            <td>16-35 lbs</td>
++            <td>36-60 lbs</td>
++            {% if showXLColumn %}
++                <td>61-85 lbs</td>
++            {% endif %}
++        </tr>
++    </table>
++{% endmacro %}
+\ No newline at end of file
+diff --git a/mainCollection.twig b/mainCollection.twig
+index f8f6942..9f12153 100644
+--- a/mainCollection.twig
++++ b/mainCollection.twig
+@@ -1,20 +1,8 @@
+ {% extends 'layout.twig' %}
++{% import 'macros.twig' as myMacros %}
+ 
+ {% block body %}
+     <h1>The Main Collection</h1>
+ 
+-    <table class="sizing-chart table table-striped">
+-        <tr>
+-            <th>S</th>
+-            <th>M</th>
+-            <th>L</th>
+-            <th>XL</th>
+-        </tr>
+-        <tr>
+-            <td>5-15 lbs</td>
+-            <td>16-35 lbs</td>
+-            <td>36-60 lbs</td>
+-            <td>61-85 lbs</td>
+-        </tr>
+-    </table>
++    {{ myMacros.printSizingChart(true) }}
+ {% endblock %}

@@ -1,8 +1,8 @@
 diff --git a/fallCollection.twig b/fallCollection.twig
-index 119c51a..a19d48e 100644
+index 07a5b0a..5693171 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
-@@ -1,28 +1,35 @@
+@@ -1,28 +1,41 @@
 -<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"></head>
 +<!DOCTYPE html>
 +<html lang="en">
@@ -16,13 +16,19 @@ index 119c51a..a19d48e 100644
 -    {{ collectionTitle }}
 -    <small>{{ fallCollectionPromoDescription }}</small>
 -</h1>
-+    <header>Penguins Pants Plus!</header>
++    <nav class="navbar navbar-inverse">
++        <div class="container">
++            <div class="navbar-header">
++                <a class="navbar-brand" href="#">Penguin Pants Plus</a>
++            </div>
++        </div>
++    </nav>
  
 -<ul class="list-group">
 -{% for product in products %}
 -	<li class="list-group-item">
 -        <span class="badge">
--            {{ random(['black', 'white', 'green']|upper) }}
+-            {{ random(['black', 'white', 'green'])|upper }}
 -        </span>
 +    <h1>
 +        {{ collectionTitle }}
@@ -35,7 +41,7 @@ index 119c51a..a19d48e 100644
 +    {% for product in products %}
 +        <li class="list-group-item">
 +            <span class="badge">
-+                {{ random(['black', 'white', 'green']|upper) }}
++                {{ random(['black', 'white', 'green'])|upper }}
 +            </span>
  
 -        <span class="price">
@@ -58,16 +64,15 @@ index 119c51a..a19d48e 100644
  
  </body>
  </html>
-\ No newline at end of file
 diff --git a/layout.twig b/layout.twig
 new file mode 100644
 index 0000000..e69de29
 diff --git a/mainCollection.twig b/mainCollection.twig
 new file mode 100644
-index 0000000..290462c
+index 0000000..489c8f9
 --- /dev/null
 +++ b/mainCollection.twig
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,22 @@
 +<!DOCTYPE html>
 +<html lang="en">
 +<head>
@@ -76,7 +81,13 @@ index 0000000..290462c
 +</head>
 +<body>
 +
-+    <header>Penguins Pants Plus!</header>
++    <nav class="navbar navbar-inverse">
++        <div class="container">
++            <div class="navbar-header">
++                <a class="navbar-brand" href="#">Penguin Pants Plus</a>
++            </div>
++        </div>
++    </nav>
 +
 +    <h1>Welcome to our main collection or products</h1>
 +

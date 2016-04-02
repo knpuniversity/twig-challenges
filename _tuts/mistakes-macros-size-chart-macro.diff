@@ -1,0 +1,76 @@
+diff --git a/fallCollection.twig b/fallCollection.twig
+index f18713c..9831757 100644
+--- a/fallCollection.twig
++++ b/fallCollection.twig
+@@ -5,23 +5,4 @@
+         {{ collectionTitle }}
+         <small>{{ fallCollectionPromoDescription }}</small>
+     </h1>
+-
+-    <ul class="list-group">
+-    {% for product in products if product.quantity > 0 %}
+-        <li class="list-group-item">
+-            <span class="badge">
+-                {{ product.quantity }}
+-            </span>
+-
+-            {{ product.name }}
+-            <span class="price">{{ product.price }}</span>
+-        </li>
+-    {% else %}
+-        <li>
+-            <div class="alert alert-warning">
+-                No pants for you!
+-            </div>
+-        </li>
+-    {% endfor %}
+-    </ul>
+ {% endblock %}
+diff --git a/macros.twig b/macros.twig
+new file mode 100644
+index 0000000..e69de29
+diff --git a/mainCollection.twig b/mainCollection.twig
+index 6713706..f8f6942 100644
+--- a/mainCollection.twig
++++ b/mainCollection.twig
+@@ -1,9 +1,20 @@
+ {% extends 'layout.twig' %}
+ 
+ {% block body %}
+-    {{ include('_featuredProduct.twig') }}
++    <h1>The Main Collection</h1>
+ 
+-    <h1>Welcome to our main collection or products</h1>
+-
+-    <div>The main products are being updated!</div>
++    <table class="sizing-chart table table-striped">
++        <tr>
++            <th>S</th>
++            <th>M</th>
++            <th>L</th>
++            <th>XL</th>
++        </tr>
++        <tr>
++            <td>5-15 lbs</td>
++            <td>16-35 lbs</td>
++            <td>36-60 lbs</td>
++            <td>61-85 lbs</td>
++        </tr>
++    </table>
+ {% endblock %}
+diff --git a/render.php b/render.php
+index 19c10bc..783012c 100644
+--- a/render.php
++++ b/render.php
+@@ -25,7 +25,10 @@ $products = array(
+ );
+ 
+ try {
+-    $output = $twig->render('aboutPenguins.twig');
++    $output = $twig->render('fallCollection.twig', [
++        'collectionTitle' => 'Fall in love and look your best in the snow.',
++        'fallCollectionPromoDescription' => $fallCollectionPromoDescription,
++    ]);
+ } catch (\Twig_Error_Syntax $e) {
+     // this tells the grader that there was an error
+     $_ENV['language_error'] = true;

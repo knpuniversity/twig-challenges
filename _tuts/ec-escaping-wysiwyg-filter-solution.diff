@@ -1,0 +1,12 @@
+diff --git a/singleItem.twig b/singleItem.twig
+index a0b680f..969a958 100644
+--- a/singleItem.twig
++++ b/singleItem.twig
+@@ -4,6 +4,6 @@
+     <h1>{{ product.name }}</h1>
+ 
+     <div>
+-        {{ product.description }}
++        {{ product.description|raw }}
+     </div>
+ {% endblock %}

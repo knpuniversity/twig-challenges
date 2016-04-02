@@ -1,10 +1,10 @@
 diff --git a/fallCollection.twig b/fallCollection.twig
-index aeade54..95b07b0 100644
+index ba08ca3..dd90559 100644
 --- a/fallCollection.twig
 +++ b/fallCollection.twig
-@@ -12,6 +12,11 @@
-     The sale starts: {{ saleStartsAt|date('F jS') }}
- </p>
+@@ -8,6 +8,11 @@
+     </small>
+ </h1>
  
 +<h3>
 +    <span class="glyphicon glyphicon-star"></span>
@@ -15,10 +15,10 @@ index aeade54..95b07b0 100644
  {% for product in products %}
  	<li class="list-group-item">
 diff --git a/render.php b/render.php
-index 3c8d522..30d77d4 100644
+index 0e43e75..226640d 100644
 --- a/render.php
 +++ b/render.php
-@@ -27,6 +27,7 @@ try {
+@@ -28,6 +28,7 @@ try {
          ),
          'saleStartsAt' => $saleStartsAt,
          'fallCollectionPromoDescription' => $fallCollectionPromoDescription,

@@ -144,7 +144,67 @@
             "id": "for-inline-if-for-else-solution",
             "name": "For\/Inline if: For else [Solution]",
             "description": null
+        },
+        {
+            "id": "for-inline-if-one-line-if-stmt",
+            "name": "For\/Inline if: One-line if Stmt",
+            "description": null
+        },
+        {
+            "id": "for-inline-if-one-line-if-stmt-solution",
+            "name": "For\/Inline if: One-line if Stmt [Solution]",
+            "description": null
+        },
+        {
+            "id": "for-inline-if-for-tag-conditions",
+            "name": "For\/Inline if: for tag Conditions",
+            "description": null
+        },
+        {
+            "id": "for-inline-if-for-tag-conditions-solution",
+            "name": "For\/Inline if: for tag Conditions [Solution]",
+            "description": null
+        },
+        {
+            "id": "mistakes-macros-include-mistake",
+            "name": "Mistakes\/Macros: include Mistake",
+            "description": null
+        },
+        {
+            "id": "mistakes-macros-include-mistake-solution",
+            "name": "Mistakes\/Macros: include Mistake [Solution]",
+            "description": null
+        },
+        {
+            "id": "mistakes-macros-size-chart-macro",
+            "name": "Mistakes\/Macros: Size Chart Macro",
+            "description": null
+        },
+        {
+            "id": "mistakes-macros-size-chart-macro-solution",
+            "name": "Mistakes\/Macros: Size Chart Macro [Solution]",
+            "description": null
+        },
+        {
+            "id": "ec-escaping-sidebar-block",
+            "name": "EC\/Escaping: sidebar Block",
+            "description": null
+        },
+        {
+            "id": "ec-escaping-sidebar-block-solution",
+            "name": "EC\/Escaping: sidebar Block [Solution]",
+            "description": null
+        },
+        {
+            "id": "ec-escaping-wysiwyg-filter",
+            "name": "EC\/Escaping: wysiwyg Filter",
+            "description": null
+        },
+        {
+            "id": "ec-escaping-wysiwyg-filter-solution",
+            "name": "EC\/Escaping: wysiwyg Filter [Solution]",
+            "description": null
         }
     ],
-    "sha": "aa0fcb878db3e42a0fab8236affc2333fde0fcc6"
+    "sha": "1c1a6cb49a5acd37ab36bdfe06f78aa347332497"
 }
