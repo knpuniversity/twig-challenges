@@ -100,7 +100,7 @@ functionsfilters_datefiltercoding:
 
         The penguins will want to get their flippers on these pants as
         *soon* as possible. So, we're passing in a `saleStartsAt` date
-        variable that's set to *when* these fresh pants are available.
+        variable that's set to *when* these fresh pants will be available.
     question_steps:
         - |
             Print the new `saleStartsAt` variable by using the `date` **filter**
@@ -127,10 +127,10 @@ functionsfilters_datefiltercoding:
 
 functionsfilters_randomfunctionwithfiltercoding:
     question: |
-        We don't really know what color we'll have for each item yet. But we
-        want to create a realistic demp that shows a variety of colors!
+        The pants will come in *many* colors... we just don't know *what*
+        colors yet. But we want to create a realistic demo that shows a variety!
     question_steps:
-        - Use the `random` function to print either `black`, `white` or `green` inside the `span.badge` element.
+        - Inside the `for` tag, use the `random` function to print either `black`, `white` or `green` inside the `span.badge` element.
         - Add the `upper` filter to really make this page SHOUT!
     step: functions-filters-random-fxn-filter
     files:
@@ -143,11 +143,11 @@ functionsfilters_randomfunctionwithfiltercoding:
     grading:
         look_for_random:
             type: php
-            assertTrue: input('fallCollection.twig') matches '/{{ *random(/'
+            assertTrue: input('fallCollection.twig') matches '/{{ *random/'
             failure: Are you using the `random()` function?
         look_for_upper:
             type: php
-            assertTrue: input('fallCollection.twig') matches '/|upper *}}/'
+            assertTrue: input('fallCollection.twig') matches '/\\|upper *}}/'
             failure: Use the `upper` filter to uppercase the colors!
         look_for_black:
             type: php
@@ -164,11 +164,11 @@ functionsfilters_randomfunctionwithfiltercoding:
         assert_color:
             type: http
             assertTrue: body() matches '/BLACK|WHITE|GREEN/'
-            failure: I don't see BLACK, GREEN or WHITE on the page: are you randomly selecting one of these and uppercasing them?
+            failure: "I don't see BLACK, GREEN or WHITE on the page: are you randomly selecting one of these and uppercasing them?"
 
 functionsfilters_dumpfindvariablecoding:
     question: |
-        All the AirPupnMeow PHP developers are at lunch. You know that
+        All the AirPupnMeow developers are at lunch. You know that
         a new variable is being passed to the template that's set to
         the *description* for the fall collection... but you don't know what
         the variable is called! Do some detective work to find out!
