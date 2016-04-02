@@ -611,12 +611,12 @@ forloopinlineif_onelineifstatementcoding:
     grading:
         assert_text_1:
             type: http
-            assertTrue: css('.stock-status').text() matches '/Out of Stock/'
-            failure: I see the *"The Black and Tan Trouser"* text being printed!?
+            assertTrue: css('.badge').text() matches '/Out of stock/'
+            failure: I don't see any "Out of stock" for `The Black and Tan Trouser`?
         assert_text_2:
             type: http
-            assertTrue: css('.stock-status').text() matches '/62/'
-            failure: I see the *"The Black and Tan Trouser"* text being printed!?
+            assertTrue: body() matches '/62/'
+            failure: I don't see "62" for `Starfish Halloween Costume`?
         assert_text:
             type: php
             assertFalse: input('fallCollection.twig') matches '/{% if/'
@@ -643,11 +643,11 @@ forloopinlineif_fortagconditionscoding:
         look_for_text_1:
             type: http
             assertFalse: body() matches '/The Black and Tan Trouser/'
-            failure: I see the *"The Black and Tan Trouser"* text being printed!?
+            failure: I see the `The Black and Tan Trouser` product being printed!?
         look_for_text_2:
             type: http
             assertTrue: body() matches '/Starfish Halloween Costume/'
-            failure: I don't see the *"Starfish Halloween Costume"* text being printed!?
+            failure: I don't see the `Starfish Halloween Costume` product anymore!?
         look_for_if:
             type: php
             assertFalse: input('fallCollection.twig') matches '/{% if/'
@@ -658,7 +658,7 @@ mistakesmacros_includemistakecoding:
     question: |
         You've been coding like a machine until someone brought birthday cake
         <i class="fa fa-birthday-cake"></i> to the office and you quit working
-        immediately! Now, in a slight sugar-coma, you're ready to keep working.
+        immediately! Now, in a slight sugar-coma, you're ready to keep going!
     question_steps:
         - There's an error in your template! Submit to see what it is.
         - Read the error and update your template to fix things!
@@ -731,7 +731,7 @@ mistakesmacros_sizechartmacrocoding:
     grading:
         look_for_macro_definition:
             type: php
-            assertTrue: input('macros.twig') matches '/printSizingChart(/'
+            assertTrue: input('macros.twig') matches '/printSizingChart\\(/'
             failure: I don't see the `printSizingChart()` macro in `macros.twig`
         look_for_macro_argument:
             type: php
@@ -739,11 +739,11 @@ mistakesmacros_sizechartmacrocoding:
             failure: I don't see the `showXLColumn` argument for the `printSizingChart()` macro. Add this and use it to hide/show the XL column.
         look_for_macro_usage_1:
             type: php
-            assertTrue: input('fallCollection.twig') matches '/printSizingChart(/'
+            assertTrue: input('fallCollection.twig') matches '/printSizingChart\\(/'
             failure: You'll need to use the `printSizingChart()` macro inside `fallCollection.twig`
         look_for_macro_usage_2:
             type: php
-            assertTrue: input('mainCollection.twig') matches '/printSizingChart(/'
+            assertTrue: input('mainCollection.twig') matches '/printSizingChart\\(/'
             failure: You'll need to use the `printSizingChart` macro inside `mainCollection.twig`
         look_for_import:
             type: php
@@ -752,11 +752,11 @@ mistakesmacros_sizechartmacrocoding:
         look_for_text_1:
             type: http
             assertTrue: body() matches '/5-15 lbs/'
-            failure: I don't see the text of *"5-15 lbs"* text being printed!?
+            failure: I don't see `5-15 lbs` text being printed!? Is the macro returning the sizing chart?
         look_for_text_2:
             type: http
-            assertTrue: body() matches '/61-85 lbs/'
-            failure: I don't see the text of *"61-85 lbs"* text being printed!?
+            assertFalse: body() matches '/61-85 lbs/'
+            failure: I see the XL text `61-85 lbs` being printed, but it should **not** be. When you call the macro in `fallCollection.twig`, pass `false` to the `showXLColumn` argument and use this in `macros.twig` to *not* print this text.
 
 # ExtraCreditEscaping
 extracreditescaping_sidebarblockcoding:
