@@ -778,9 +778,9 @@ extracreditescaping_sidebarblockcoding:
             so it takes up the full-width of the page.
     step: ec-escaping-sidebar-block
     files:
-        layout.twig: ~
         fallCollection.twig:
             read_only: true
+        layout.twig: ~
     features:
         editor: ~
         browser:
