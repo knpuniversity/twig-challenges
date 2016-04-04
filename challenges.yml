@@ -292,8 +292,8 @@ layouttemplateinheritance_createlayoutremoveduplicationcoding:
             failure: I don't see closing `html` tag. Put the entire HTML layout into `layout.twig` template
         look_for_header:
             type: php
-            assertTrue: input('layout.twig') matches '/<header/'
-            failure: The `header` tag belongs in `layout.twig` too, since it's repeated on both pages
+            assertTrue: input('layout.twig') matches '/navbar/'
+            failure: The `.navbar` element belongs in `layout.twig` too, since it's repeated on both pages
         look_for_layout:
             type: php
             assertFalse: input('fallCollection.twig') matches '/<html/'
