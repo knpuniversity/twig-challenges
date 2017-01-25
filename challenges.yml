@@ -65,11 +65,12 @@ basics_incorrectopentagsmc:
         * B) is correct because everything between `{#` and `#}` are comments. So, even
         though this *would* be bad Twig code, it's totally ignored.
 
-        * C) is *not* correct, because the `for` tag must be used with the say something
+        * C) is *not* correct, because the `for` tag must be used with the "do something"
         tag: `{% for product in my_products %}`.
 
-        * D) is correct because `{% set ...` is one of the valid "tags" that can be used
-        with the "say something" tag. We haven't used it yet, but it's totally valid.
+        * D) is correct because the `set` is one of the valid tags that can be used with
+        the "do something" tag: `{% set variable = 'value' %}`. We haven't used it yet,
+        but it's totally valid.
     features:
         multiple_choice:
             choices:
