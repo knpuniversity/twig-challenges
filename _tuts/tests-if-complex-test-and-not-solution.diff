@@ -1,5 +1,5 @@
 diff --git a/_featuredProduct.twig b/_featuredProduct.twig
-index 5b5f23d..13ae408 100644
+index 5b5f23d..853dbc4 100644
 --- a/_featuredProduct.twig
 +++ b/_featuredProduct.twig
 @@ -3,7 +3,9 @@
@@ -7,7 +7,7 @@ index 5b5f23d..13ae408 100644
  
      <div class="featured-quantity">
 -        {{ quantityRemaining }}
-+        {% if quantityRemaining is defined and quantityRemaning is not odd %}
++        {% if quantityRemaining is defined and quantityRemaining is not odd %}
 +            {{ quantityRemaining }}
 +        {% endif %}
      </div>
