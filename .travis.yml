@@ -1,0 +1,25 @@
+# Activates Travis CI for grading course challenges
+
+language: php
+
+sudo: false
+
+cache:
+    directories:
+        - $HOME/.composer/cache/files
+
+php:
+    - 5.6
+
+before_install:
+    - git clone https://github.com/knpuniversity/challenger.git $HOME/challenger
+    - composer install -d $HOME/challenger
+    - export CHALLENGER_REPO_SHA=$TRAVIS_COMMIT
+    - export CHALLENGER_REPO_URL=https://github.com/$TRAVIS_REPO_SLUG
+    - echo $CHALLENGER_REPO_URL
+
+script: php $HOME/challenger/bin/challenger test
+
+notifications:
+    slack:
+        secure: v7Lv2saKhgTCi0CT1KU6Cdc8NY7AdWHVpbc2gs1zXd+ZrrTmOOo+ODZGrYy0+LWJylGoWVvIPTE+ZQU9awcq8fgiVlw8JyPyey/yvoYBE2tGq813dlZjDeQQWh6IYFNxhwXVdA8wexOq+VVOZva4Jr26//UIDP4SGfjxWJ0ALk3KE0URR7wW5xnxeQdrwXXKfHuGGNxMmUZKA2/TFL7JSEvusA46WP5FnpUUBvbm2OYe8h9SJX4Qg8Sxvlwy7Yx0pQC17P4qgTD3Ab4NpWzhYZtd9xi5GlplsyB99Ie8dXqnxqxIj2GGN8xjDsmJn59DRfNYDsfjevR5iZSkrtYuigUQEMujqO2dhjp4yT0t2eYUkzU4crYqGUAG+wYY7gXGJL/0JK9TzLx636HFVc8OrZ1LkgrgqWBPdyPbAxoSL/bd9/+W9aiPT3Pj8/LACbXUmIkWDwxIFO6xqay3g408jmPYqTRjY9Ccck5vQMCrZlwKNLtf44M2QcJh2XpWdIdMOwJVYzT1eN3eVqQIqynkGI9UfIwu32wKYMuNYSI085f/xcyOnUqNDfNYLzXvyZwcFLutkFKQEAYxU9rA6hnz0TPI7y1IkiIPjBbAKzt7X+t5xrRYWDdMLbe0EavgQOhQpBw2i2yuQeHSVlSP5CwaoPqmy7beMPnAD2T2c9kBIv8=
