@@ -28,4 +28,4 @@ try {
     $output = 'Runtime error in your Twig code: '.$e->getMessage();
 }
 
-echo $output;
+echo $output; 
