@@ -403,7 +403,7 @@ includingothertemplates_useincludecoding:
             type: php
             assertFalse: input('fallCollection.twig') matches '/pin-striped full suit/'
             failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `fallCollection.twig`
-        look_for_include_2:
+        look_for_include_3:
             type: php
             assertTrue: input('mainCollection.twig') matches '/include/'
             failure: Now that you're including `_featuredProduct.twig`, you should remove the *"pin-striped full suit"* text from `mainCollection.twig`
