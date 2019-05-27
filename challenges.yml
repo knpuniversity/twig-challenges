@@ -187,11 +187,11 @@ functionsfilters_dumpfindvariablecoding:
             default_uri: render.php
             show_address_bar: false
     grading:
-        look_for_random:
+        look_for_variable:
             type: php
             assertTrue: input('fallCollection.twig') matches '/{{ *fallCollectionPromoDescription/'
             failure: I don't see you printing the unknown variable yet...
-        look_for_random:
+        look_for_text:
             type: http
             assertTrue: body() matches '/Still wearing your summer swim shorts/'
             failure: I don't see the text of `fallCollectionPromoDescription` variable being printed!?
